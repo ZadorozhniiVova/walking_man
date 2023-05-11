@@ -1,5 +1,5 @@
 body {
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -12,54 +12,5 @@ body {
 
   * {
     cursor: inherit;
-  }
-
-}
-
-#cursor {
-  position: absolute;
-  left: -28px;
-  top: -34px;
-  will-change: transform;
-  transform: translate(-999px, -999px);
-  pointer-events: none;
-
-  img {
-    will-change: transform;
-    transition: transform .1s linear;
-  }
-}
-
-@keyframes color-blink {
-  0% {
-    color: hsla(5, 83%, 53%, 1)
-  }
-
-  14% {
-    color: hsla(33, 88%, 59%, 1);
-  }
-
-  28% {
-    color: hsla(62, 98%, 66%, 1);
-  }
-
-  42% {
-    color: hsla(102, 81%, 61%, 1);
-  }
-
-  56% {
-    color: hsla(170, 94%, 72%, 1);
-  }
-
-  70% {
-    color: hsla(227, 100%, 48%, 1);
-  }
-
-  84% {
-    color: hsla(279, 91%, 59%, 1);
-  }
-
-  100% {
-    color: hsla(279, 91%, 59%, 1);
   }
 }

@@ -1,5 +1,6 @@
 import './scss/preloader.scss';
 import './scss/style.scss';
+import './scss/cursor.scss';
 import './js/preloader.js';
 import './js/cursor.js';
 import * as THREE from "../node_modules/three/build/three.module.js";

@@ -1,61 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <div class="preloader">
+      <!-- Google Chrome -->
+      <div class="infinityChrome">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
 
-<body>
-  <div class="preloader">
-    <div class='loader-ring'>
-        <div class='loader-ring-light'></div>
-        <div class='loader-ring-track'></div>
+      <!-- Safari and others -->
+      <div class="infinity">
+        <div>
+          <span></span>
+        </div>
+        <div>
+          <span></span>
+        </div>
+        <div>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Stuff -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        style="display: none"
+      >
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+
+      <!-- dribbble -->
+      <a
+        class="dribbble"
+        href="https://dribbble.com/shots/5557955-Infinity-Loader"
+        target="_blank"
+        ><img
+          src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg"
+          alt=""
+      /></a>
     </div>
-</div>
-  <div id="cursor"><img alt="Cursor Hand" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42578/rotating-cursor.svg"></div>
+    <div id="cursor"></div>
+    <div id="cursor-border"></div>
 
-  <!-- <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script> -->
+    <!-- <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script> -->
 
-
-  <audio>
-    <source src="https://zadorozhniivova.github.io/walking_man/music/background-music.mp3" type="audio/ogg">
-    <source src="https://zadorozhniivova.github.io/walking_man/music/background-music.mp3" type="audio/mpeg">
-    <!-- <source src="/music//gangnam-style.mp3" type="audio/ogg">
+    <audio>
+      <source
+        src="https://zadorozhniivova.github.io/walking_man/music/background-music.mp3"
+        type="audio/ogg"
+      />
+      <source
+        src="https://zadorozhniivova.github.io/walking_man/music/background-music.mp3"
+        type="audio/mpeg"
+      />
+      <!-- <source src="/music//gangnam-style.mp3" type="audio/ogg">
   <source src="/music//gangnam-style.mp3" type="audio/mpeg"> -->
-    Your browser does not support the audio element.
-  </audio>
-  <script type="x-shader/x-vertex" id="vertexshader">
+      Your browser does not support the audio element.
+    </audio>
+    <script type="x-shader/x-vertex" id="vertexshader">
 
-    varying vec2 vUv;
+      varying vec2 vUv;
 
-    void main() {
+      void main() {
 
-      vUv = uv;
+        vUv = uv;
 
-      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 
-    }
+      }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
 
-  </script>
-  <script type="x-shader/x-fragment" id="fragmentshader">
+      uniform sampler2D baseTexture;
+      uniform sampler2D bloomTexture;
 
-    uniform sampler2D baseTexture;
-    uniform sampler2D bloomTexture;
+      varying vec2 vUv;
 
-    varying vec2 vUv;
+      void main() {
 
-    void main() {
+        gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
 
-      gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
-
-    }
-
-  </script>
-  <script src="./dist/bundle.js"></script>
-</body>
-
+      }
+    </script>
+    <script src="./dist/bundle.js"></script>
+  </body>
 </html>

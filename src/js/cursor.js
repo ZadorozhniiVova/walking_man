@@ -1,70 +1,29 @@
-// Because of a WebKit-Issue which renders (even SVG) cursors blurry on Retina-Displays I decided to go for a solution which renders the cursor within a custom <div>.
+const cursor = document.querySelector("#cursor");
+const cursorBorder = document.querySelector("#cursor-border");
+const cursorPos = { x: 0, y: 0 };
+const cursorBorderPos = { x: 0, y: 0 };
 
-var rotatingCursor = (function() {
+document.addEventListener("mousemove", (e) => {
+  cursorPos.x = e.clientX;
+  cursorPos.y = e.clientY;
 
-    /* Local Variables */
-    const INTERVAL_POSITION = 5;
-    const INTERVAL_ROTATION = 100;
-    let lastCursorPos = {x: -999, y: -999};
-    let currentCursorPos = {x: -999, y: -999};
-    let lastCursorAngle = 0, cursorAngle = 0;
-    let cursorEl, cursorImageEl;
-  
-    function setCurrentCursorProps() {
-    
-      cursorEl.style.transform = `translate(${currentCursorPos.x}px, ${currentCursorPos.y}px)`;
-  
-      
-      while (Math.abs(lastCursorAngle - cursorAngle) > 180) {
-        if (cursorAngle > lastCursorAngle) {
-          cursorAngle -= 360;
-        } else if (cursorAngle < lastCursorAngle) {
-          cursorAngle += 360;
-        }
-      }
-   
-      cursorImageEl.style.transform = `rotate(${cursorAngle - 90}deg)`;
-    }
-  
-    function updateCursor() {
-      window.addEventListener('mousemove', event => {
-        currentCursorPos = {x: event.clientX, y: event.clientY};
-      });
-  
-      // Interval for updating cursor-position
-      setInterval(setCurrentCursorProps, INTERVAL_POSITION);
-  
-      
-      setInterval(() => {
-        const delt = {
-          x: lastCursorPos.x - currentCursorPos.x,
-          y: lastCursorPos.y - currentCursorPos.y
-        }
-        if (Math.abs(delt.x) < 3 && Math.abs(delt.y) < 3) return;
-        cursorAngle = (Math.atan2(delt.y, delt.x) * 180 / Math.PI);
-  
-        setCurrentCursorProps();
-  
-        lastCursorPos = currentCursorPos;
-        lastCursorAngle = cursorAngle;
-      }, INTERVAL_ROTATION);
-    }
-  
-  
-    /* Public Functions */
-  
-    return {
-  
-      'initialize' : () => {
-        cursorEl = document.querySelector('#cursor');
-        cursorImageEl = document.querySelector('#cursor > img');
-        updateCursor();
-      }
-  
-    };
-  
-  })();
-  
-  
-  document.addEventListener('DOMContentLoaded', rotatingCursor.initialize);
-  
+  cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+});
+
+requestAnimationFrame(function loop() {
+  const easting = 8;
+  cursorBorderPos.x += (cursorPos.x - cursorBorderPos.x) / easting;
+  cursorBorderPos.y += (cursorPos.y - cursorBorderPos.y) / easting;
+
+  cursorBorder.style.transform = `translate(${cursorBorderPos.x}px, ${cursorBorderPos.y}px)`;
+  requestAnimationFrame(loop);
+});
+
+document.addEventListener("mousedown", (e) => { 
+  cursor.style.background = 'red';
+  cursorBorder.style.boxShadow = '0 0 0 1px red';
+});
+document.addEventListener("mouseup", (e) => { 
+  cursor.style.background = 'white';
+  cursorBorder.style.boxShadow = '0 0 0 1px white';
+});
