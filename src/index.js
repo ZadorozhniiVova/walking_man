@@ -388,7 +388,8 @@ window.addEventListener("wheel", (event) => {
 
 // model
 const loader = new FBXLoader();
-loader.load("model/strut-walking-slow.fbx", function (object) {
+loader.load("model/dance.fbx", function (object) {
+// loader.load("model/strut-walking-slow.fbx", function (object) {
   // loader.load("model/gangnam-style-grandmom.fbx", function (object) {
   mixer = new THREE.AnimationMixer(object);
 
