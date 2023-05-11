@@ -43,4 +43,27 @@ body.loaded{
     transition: top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out,
       height 0.15s ease-out, background-color 0.15s ease-out;
     z-index: 999;
+    
+  }
+
+  #cursor__info{
+    position: absolute;
+    left: 60px;
+    bottom: -5px;
+    width: max-content;
+    font-size: 12px;
+    word-break: break-word;
+    text-shadow: 1px 1px 2px white, 0 0 1em gold, 0 0 0.2em white;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    opacity: 0;
+    &.not-playing{
+      opacity: 1;
+    }
+    &.playing{
+      opacity: 0;
+    }
   }

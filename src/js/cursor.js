@@ -27,3 +27,11 @@ document.addEventListener("mouseup", (e) => {
   cursor.style.background = 'white';
   cursorBorder.style.boxShadow = '0 0 0 1px white';
 });
+
+document.addEventListener("mousemove", (e) => { 
+  if(!document.getElementById('cursor__info').classList.contains('playing')){
+    setTimeout(() =>
+      document.getElementById('cursor__info').classList.add('not-playing'),1000
+    )
+  }
+});

@@ -3,6 +3,7 @@ import './scss/style.scss';
 import './scss/cursor.scss';
 import './js/preloader.js';
 import './js/cursor.js';
+import './js/music.js';
 import * as THREE from "../node_modules/three/build/three.module.js";
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
@@ -383,11 +384,7 @@ window.addEventListener("wheel", (event) => {
   return r;
 });
 
-//START AUDIO
-document.querySelector("canvas").addEventListener("click", () => {
-  document.querySelector("audio").volume = 0.1;
-  document.querySelector("audio").play();
-});
+
 
 // model
 const loader = new FBXLoader();
@@ -410,3 +407,11 @@ loader.load("model/strut-walking-slow.fbx", function (object) {
   meshHuman.add(object);
 });
 render();
+
+
+//START AUDIO
+document.querySelector("canvas").addEventListener("click", () => {
+  document.querySelector("audio").volume = 0.1;
+  document.querySelector("audio").play();
+  document.getElementById('cursor__info').classList.add("playing");
+});
