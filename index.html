@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="preloader">
+    <div class='loader-ring'>
+        <div class='loader-ring-light'></div>
+        <div class='loader-ring-track'></div>
+    </div>
+</div>
+  <div id="cursor"><img alt="Cursor Hand" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42578/rotating-cursor.svg"></div>
+
+  <!-- <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script> -->
+
+
+  <audio>
+    <source src="/music//background-music.mp3" type="audio/ogg">
+    <source src="/music//background-music.mp3" type="audio/mpeg">
+    <!-- <source src="/music//gangnam-style.mp3" type="audio/ogg">
+  <source src="/music//gangnam-style.mp3" type="audio/mpeg"> -->
+    Your browser does not support the audio element.
+  </audio>
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+    varying vec2 vUv;
+
+    void main() {
+
+      vUv = uv;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+    }
+
+  </script>
+  <script type="x-shader/x-fragment" id="fragmentshader">
+
+    uniform sampler2D baseTexture;
+    uniform sampler2D bloomTexture;
+
+    varying vec2 vUv;
+
+    void main() {
+
+      gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+
+    }
+
+  </script>
+  <script src="./dist/bundle.js"></script>
+</body>
+
+</html>
