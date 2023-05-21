@@ -1,9 +1,10 @@
-import './scss/preloader.scss';
-import './scss/style.scss';
-import './scss/cursor.scss';
-import './js/preloader.js';
-import './js/cursor.js';
-import './js/music.js';
+import "./scss/preloader.scss";
+import "./scss/style.scss";
+import "./scss/cursor.scss";
+import "./scss/scene-switcher.scss";
+import "./js/preloader.js";
+import "./js/cursor.js";
+import "./js/music.js";
 import * as THREE from "../node_modules/three/build/three.module.js";
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
@@ -26,32 +27,36 @@ let container,
   lightTubeOne,
   lightTubeTwo,
   lightTubeThree,
-  parameters;
+  parameters,
+  loader;
 
 let SCREEN_WIDTH = window.innerWidth;
 let SCREEN_HEIGHT = window.innerHeight;
 let aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
 
+let audioSceneOne = document.querySelector(".audio1");
+let audioSceneTwo = document.querySelector(".audio2");
 const materials = [];
 let r = 0;
 const clock = new THREE.Clock();
 const params = {
   exposure: 1,
-  bloomStrength: 4,
-  bloomThreshold: 0,
+  bloomStrength: 5,
+  bloomThreshold: 0.1,
   bloomRadius: 1,
 };
 
 const init = () => {
   //CONTAINER
   container = document.createElement("div");
-  // container.classList.add("container");
+  container.classList.add("canvas-hero");
+  container.classList.add("scene1");
   document.body.appendChild(container);
   // SCENE
   scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x000000, 1, 2000);
+  scene.fog = new THREE.Fog(0x000000, 1, 5000);
   // CAMERA
-  camera = new THREE.PerspectiveCamera(50, aspect, 1, 1000);
+  camera = new THREE.PerspectiveCamera(50, aspect, 1, 2000);
   camera.rotation.y = Math.PI;
   scene.add(camera);
   // RENDERER
@@ -67,7 +72,7 @@ const init = () => {
   light.layers.enable(1);
   scene.add(light);
 
-  const dirLight = new THREE.DirectionalLight(0xffca00, 5);
+  const dirLight = new THREE.DirectionalLight(0xffca00, 3);
   dirLight.position.set(0, 3, 0);
   dirLight.castShadow = true;
   dirLight.shadow.camera.top = 180;
@@ -220,25 +225,24 @@ const main = () => {
   camera.add(meshHuman);
   scene.add(meshHuman);
 
-  // ground
-  const meshGround = new THREE.Mesh(
-    new THREE.BoxGeometry(10000, 10000),
-    new THREE.MeshPhongMaterial({ color: 0x000000, depthWrite: false })
-  );
-  meshGround.rotation.x = -Math.PI / 2;
-  meshGround.receiveShadow = true;
-  meshHuman.add(meshGround);
-  meshTubes.add(meshGround);
-  
+  // // ground
+  // const meshGround = new THREE.Mesh(
+  //   new THREE.BoxGeometry(10000, 10000),
+  //   new THREE.MeshPhongMaterial({ color: 0x000000, depthWrite: false })
+  // );
+  // meshGround.rotation.x = -Math.PI / 2;
+  // meshGround.receiveShadow = true;
+  // meshHuman.add(meshGround);
+  // meshTubes.add(meshGround);
 
-  const reflectorGeometry = new THREE.PlaneGeometry(2000, 2000);
-  const reflector = new Reflector(reflectorGeometry, {
-    textureWidth: 1024 * window.devicePixelRatio,
-    textureHeight: 1024 * window.devicePixelRatio,
-    color: 0x889999,
-  });
+  // const reflectorGeometry = new THREE.PlaneGeometry(2000, 2000);
+  // const reflector = new Reflector(reflectorGeometry, {
+  //   textureWidth: 1024 * window.devicePixelRatio,
+  //   textureHeight: 1024 * window.devicePixelRatio,
+  //   color: 0x889999,
+  // });
 
-  const reflectorGeometryHuman = new THREE.CircleGeometry(500, 500);
+  const reflectorGeometryHuman = new THREE.CircleGeometry(1000, 1000);
   const reflectorHuman = new Reflector(reflectorGeometryHuman, {
     clipBias: 1,
     textureWidth: 1024 * window.devicePixelRatio,
@@ -246,13 +250,13 @@ const main = () => {
     color: 0x889999,
   });
 
-  reflector.rotation.x = Math.PI * -0.5;
-  reflector.position.y = 0.15;
+  // reflector.rotation.x = Math.PI * -0.5;
+  // reflector.position.y = 0.15;
 
   reflectorHuman.rotation.x = Math.PI * -0.5;
   reflectorHuman.position.y = 0.17;
 
-  meshTubes.add(reflector);
+  // meshTubes.add(reflector);
   meshHuman.add(reflectorHuman);
 
   tubes();
@@ -324,8 +328,10 @@ const render = () => {
   meshHuman.position.z = 700 * Math.sin(r);
   meshHuman.position.y = 0;
 
-  meshHuman.children[0].position.x = 10 * Math.cos(2 * r);
-  meshHuman.children[0].position.z = 20 * Math.sin(r);
+  if (meshHuman.children[0]) {
+    meshHuman.children[0].position.x = 10 * Math.cos(2 * r);
+    meshHuman.children[0].position.z = 20 * Math.sin(r);
+  }
 
   // camera.fov = 25 + 30 * Math.sin(0.1 * r);
   camera.fov = 2.5 + 40 * Math.sin(0.1 * r);
@@ -337,7 +343,7 @@ const render = () => {
     const object = scene.children[i];
 
     if (object instanceof THREE.Points) {
-      object.rotation.y = time * (i < 4 ? i + 15 : -(i + 15));
+      object.rotation.y = time * (i < 1 ? i + 25 : -(i + 25));
     }
   }
 
@@ -362,35 +368,51 @@ init();
 initComposer();
 main();
 
-cameraY = 165;
+cameraY = 160;
 camera.position.y = 180;
+camera.position.x = 50;
+camera.position.z = 50;
 
 window.addEventListener("wheel", (event) => {
-  r += event.deltaY * 0.001;
-  cameraY -= event.deltaY * 0.015;
-  camera.position.y += event.deltaY * 0.007;
-  camera.position.x += event.deltaY * 0.005;
-  camera.position.z += event.deltaY * 0.005;
+  r = clamp((r += event.deltaY * 0.001), 0, 11);
+  camera.position.y = clamp(
+    (camera.position.y += event.deltaY * 0.007),
+    180,
+    255
+  );
   console.log("camera.position.y", camera.position.y);
+  camera.position.x = clamp(
+    (camera.position.x += event.deltaY * 0.09),
+    50,
+    255
+  );
+  console.log("camera.position.x", camera.position.x);
+  camera.position.z = clamp(
+    (camera.position.z += event.deltaY * 0.09),
+    50,
+    255
+  );
+  console.log("camera.position.z", camera.position.z);
+  cameraY = clamp((cameraY -= event.deltaY * 0.015), 0, 165);
+  console.log("cameraY", cameraY);
 
-  lightTubeOne.rotation.x += r * 0.001;
-  lightTubeOne.rotation.z += r * 0.001;
+  if (r < 11 && r > 0.1) {
+    lightTubeOne.rotation.x += r * 0.004;
+    lightTubeOne.rotation.z += r * 0.004;
 
-  lightTubeTwo.rotation.x += r * 0.001;
-  lightTubeTwo.rotation.z += r * 0.001;
+    lightTubeTwo.rotation.x += r * 0.004;
+    lightTubeTwo.rotation.z += r * 0.004;
 
-  lightTubeThree.rotation.x += r * 0.001;
-  lightTubeThree.rotation.z += r * 0.001;
-  return r;
+    lightTubeThree.rotation.x += r * 0.004;
+    lightTubeThree.rotation.z += r * 0.004;
+  }
+  return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
 });
 
-
-
 // model
-const loader = new FBXLoader();
-loader.load("model/dance.fbx", function (object) {
-// loader.load("model/strut-walking-slow.fbx", function (object) {
-  // loader.load("model/gangnam-style-grandmom.fbx", function (object) {
+loader = new FBXLoader();
+
+loader.load("model/strut-walking-slow.fbx", function (object) {
   mixer = new THREE.AnimationMixer(object);
 
   const action = mixer.clipAction(object.animations[0]);
@@ -407,12 +429,79 @@ loader.load("model/dance.fbx", function (object) {
 
   meshHuman.add(object);
 });
-render();
 
+document.getElementById("scene2").addEventListener("click", function (object) {
+  meshHuman.clear(object);
+
+  const loaderG = new FBXLoader();
+
+  loaderG.load("model/gangnam-style-grandmom.fbx", function (objectG) {
+    mixer = new THREE.AnimationMixer(objectG);
+
+    const action = mixer.clipAction(objectG.animations[0]);
+    action.play();
+
+    objectG.traverse(function (child) {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+    objectG.aspect = 0.3;
+    meshHuman.add(objectG);
+    
+  });
+  container.classList.remove("scene1");
+  container.classList.add("scene2");
+  audioSceneOne.pause();
+  audioSceneOne.currentTime = 0;
+  render();
+});
+
+document.getElementById("scene1").addEventListener("click", function (object) {
+  meshHuman.clear(object);
+
+  const loaderG = new FBXLoader();
+
+  loaderG.load("model/strut-walking-slow.fbx", function (objectG) {
+    mixer = new THREE.AnimationMixer(objectG);
+
+    const action = mixer.clipAction(objectG.animations[0]);
+    action.play();
+
+    objectG.traverse(function (child) {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+    objectG.aspect = 0.3;
+    meshHuman.add(objectG);
+  });
+  container.classList.remove("scene2");
+    container.classList.add("scene1");
+    audioSceneTwo.pause();
+    audioSceneTwo.currentTime = 0;
+  render();
+});
+
+render();
 
 //START AUDIO
 document.querySelector("canvas").addEventListener("click", () => {
-  document.querySelector("audio").volume = 0.1;
-  document.querySelector("audio").play();
-  document.getElementById('cursor__info').classList.add("playing");
+  if(container.classList.contains("scene1")) {
+    audioSceneOne.volume = 0.1;
+    audioSceneOne.play();
+    document.getElementById("cursor__info").classList.add("playing");
+  }
+  if(container.classList.contains("scene2")) {
+    audioSceneTwo.volume = 0.1;
+    audioSceneTwo.play();
+    document.getElementById("cursor__info").classList.add("playing");
+  }
 });
+
+//MINMAX
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}

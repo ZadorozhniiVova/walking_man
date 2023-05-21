@@ -11,7 +11,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 requestAnimationFrame(function loop() {
-  const easting = 8;
+  const easting = 3;
   cursorBorderPos.x += (cursorPos.x - cursorBorderPos.x) / easting;
   cursorBorderPos.y += (cursorPos.y - cursorBorderPos.y) / easting;
 
