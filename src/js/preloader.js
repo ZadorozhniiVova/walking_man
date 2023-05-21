@@ -1,7 +1,5 @@
 window.onload = function () {
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 500);
+    document.body.classList.add('loaded');
 }   
 
 // Because only Chrome supports offset-path, feGaussianBlur for now

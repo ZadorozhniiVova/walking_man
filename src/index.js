@@ -8,7 +8,6 @@ import "./js/music.js";
 import * as THREE from "../node_modules/three/build/three.module.js";
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { EffectComposer } from "../node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
 import { UnrealBloomPass } from "../node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { RenderPass } from "../node_modules/three/examples/jsm/postprocessing/RenderPass.js";
@@ -225,39 +224,21 @@ const main = () => {
   camera.add(meshHuman);
   scene.add(meshHuman);
 
-  // // ground
-  // const meshGround = new THREE.Mesh(
-  //   new THREE.BoxGeometry(10000, 10000),
-  //   new THREE.MeshPhongMaterial({ color: 0x000000, depthWrite: false })
-  // );
-  // meshGround.rotation.x = -Math.PI / 2;
-  // meshGround.receiveShadow = true;
-  // meshHuman.add(meshGround);
-  // meshTubes.add(meshGround);
+  // ground
 
-  // const reflectorGeometry = new THREE.PlaneGeometry(2000, 2000);
-  // const reflector = new Reflector(reflectorGeometry, {
-  //   textureWidth: 1024 * window.devicePixelRatio,
-  //   textureHeight: 1024 * window.devicePixelRatio,
-  //   color: 0x889999,
-  // });
-
-  const reflectorGeometryHuman = new THREE.CircleGeometry(1000, 1000);
-  const reflectorHuman = new Reflector(reflectorGeometryHuman, {
-    clipBias: 1,
+  const reflectorGeometry = new THREE.PlaneGeometry(2000, 2000);
+  const reflector = new Reflector(reflectorGeometry, {
     textureWidth: 1024 * window.devicePixelRatio,
     textureHeight: 1024 * window.devicePixelRatio,
     color: 0x889999,
   });
 
-  // reflector.rotation.x = Math.PI * -0.5;
-  // reflector.position.y = 0.15;
 
-  reflectorHuman.rotation.x = Math.PI * -0.5;
-  reflectorHuman.position.y = 0.17;
+  reflector.rotation.x = Math.PI * -0.5;
+  reflector.position.y = 0.15;
 
-  // meshTubes.add(reflector);
-  meshHuman.add(reflectorHuman);
+  meshTubes.add(reflector);
+  
 
   tubes();
   function tubes() {
@@ -361,7 +342,7 @@ const render = () => {
 
   camera.layers.set(0);
   finalComposer.render(scene, camera);
-
+  
   requestAnimationFrame(render);
 };
 init();
