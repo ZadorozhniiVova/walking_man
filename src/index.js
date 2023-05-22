@@ -479,8 +479,9 @@ document.querySelector(".scene-switcher__button").addEventListener("click", func
 render();
 
 //START AUDIO
-document.querySelector("canvas").addEventListener("click", () => {
-  audio.volume = 0.05;
+document.querySelector(".canvas-hero").addEventListener("click", () => {
+  console.log('click')
+  audio.volume = 0.1;
   audio.play()
 });
 
