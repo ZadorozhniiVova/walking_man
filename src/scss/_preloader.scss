@@ -1,0 +1,80 @@
+.loaded .preloader {
+  display: none;
+}
+
+.preloader {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+
+  &__content {
+    font-family: "Russo One", sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+svg{
+  height: 112px;
+  animation: height 3.5s infinite alternate;
+  -webkit-animation: height 3.5s infinite alternate;
+  width: 100%;
+}
+svg text {
+  text-transform: uppercase;
+  animation: stroke 3.5s infinite alternate;
+  stroke-width: 2;
+  stroke: #365fa0;
+  font-size: 100px;
+  height: fit-content;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(54, 95, 160, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+    font-size: 100px;
+  }
+  70% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(54, 95, 160, 1);
+    
+  }
+  80% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(54, 95, 160, 1);
+    stroke-width: 3;
+
+  }
+  100% {
+    fill: rgba(72, 138, 204, 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+    font-size: 130px;
+  }
+}
+@keyframes height {
+  0% {
+    height: 112px;
+  }
+  
+  100% {
+    height: 300px;
+  }
+}

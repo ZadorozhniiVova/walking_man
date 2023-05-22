@@ -1,7 +1,7 @@
-import "./scss/preloader.scss";
-import "./scss/style.scss";
-import "./scss/cursor.scss";
-import "./scss/scene-switcher.scss";
+import "./scss/_preloader.scss";
+import "./scss/_style.scss";
+import "./scss/_cursor.scss";
+import "./scss/_scene-switcher.scss";
 import "./js/preloader.js";
 import "./js/cursor.js";
 import "./js/music.js";
@@ -12,8 +12,10 @@ import { EffectComposer } from "../node_modules/three/examples/jsm/postprocessin
 import { UnrealBloomPass } from "../node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { RenderPass } from "../node_modules/three/examples/jsm/postprocessing/RenderPass.js";
 import { ShaderPass } from "../node_modules/three/examples/jsm/postprocessing/ShaderPass.js";
+import Stats from 'three/examples/jsm/libs/stats.module'
 
 let container,
+stats,
   cameraY,
   scene,
   camera,
@@ -33,8 +35,16 @@ let SCREEN_WIDTH = window.innerWidth;
 let SCREEN_HEIGHT = window.innerHeight;
 let aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
 
-let audioSceneOne = document.querySelector(".audio1");
-let audioSceneTwo = document.querySelector(".audio2");
+let modelArraySrc = [
+  {model:"model/strut-walking-slow.fbx",
+  audio:"https://zadorozhniivova.github.io/walking_man/music/background-music.mp3"},
+  {model:"model/gangnam-style-grandmom.fbx",
+  audio:"https://zadorozhniivova.github.io/walking_man/music/gangnam-style.mp3"}
+  ,
+];
+let modelNo = 1;
+let audio = new Audio(`${modelArraySrc[modelNo-1].audio}`);
+
 const materials = [];
 let r = 0;
 const clock = new THREE.Clock();
@@ -46,10 +56,13 @@ const params = {
 };
 
 const init = () => {
+
+  //Stats
+  stats = createStats();
+  document.body.appendChild( stats.domElement );
   //CONTAINER
   container = document.createElement("div");
   container.classList.add("canvas-hero");
-  container.classList.add("scene1");
   document.body.appendChild(container);
   // SCENE
   scene = new THREE.Scene();
@@ -60,7 +73,7 @@ const init = () => {
   scene.add(camera);
   // RENDERER
   renderer = new THREE.WebGLRenderer({
-    antialias: true,
+    antialias: false,
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -169,8 +182,12 @@ const initComposer = () => {
   finalComposer = new EffectComposer(renderer);
   const finalShader = new THREE.ShaderMaterial({
     uniforms: {
-      baseTexture: { value: null },
-      bloomTexture: { value: bloomComposer.renderTarget2.texture },
+      baseTexture: {
+        value: null,
+      },
+      bloomTexture: {
+        value: bloomComposer.renderTarget2.texture,
+      },
     },
     vertexShader: `
             varying vec2 vUv;
@@ -206,7 +223,10 @@ const main = () => {
 
   meshTubes = new THREE.Mesh(
     new THREE.CircleGeometry(1000, 1000),
-    new THREE.MeshPhongMaterial({ color: 0x000000, depthWrite: false })
+    new THREE.MeshPhongMaterial({
+      color: 0x000000,
+      depthWrite: false,
+    })
   );
   meshTubes.receiveShadow = true;
   meshTubes.position.z = -300;
@@ -216,7 +236,10 @@ const main = () => {
 
   meshHuman = new THREE.Mesh(
     new THREE.CircleGeometry(1000, 1000),
-    new THREE.MeshPhongMaterial({ color: 0x000000, depthWrite: false })
+    new THREE.MeshPhongMaterial({
+      color: 0x000000,
+      depthWrite: false,
+    })
   );
   meshHuman.layers.set(0);
   meshHuman.receiveShadow = true;
@@ -233,14 +256,13 @@ const main = () => {
     color: 0x889999,
   });
 
-
   reflector.rotation.x = Math.PI * -0.5;
   reflector.position.y = 0.15;
 
   meshTubes.add(reflector);
-  
 
   tubes();
+
   function tubes() {
     class CustomSinCurve extends THREE.Curve {
       constructor(scale = 1) {
@@ -260,9 +282,15 @@ const main = () => {
     const path = new CustomSinCurve(6);
     const geometryTube = new THREE.TubeGeometry(path, 1, 3, 8, false);
 
-    const material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
-    const material2 = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
-    const material3 = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+    const material = new THREE.MeshBasicMaterial({
+      color: 0xaaaaaa,
+    });
+    const material2 = new THREE.MeshBasicMaterial({
+      color: 0xaaaaaa,
+    });
+    const material3 = new THREE.MeshBasicMaterial({
+      color: 0xaaaaaa,
+    });
     lightTubeOne = new THREE.Mesh(geometryTube, material);
     lightTubeOne.position.x = 150;
     lightTubeOne.position.y = 200;
@@ -342,7 +370,7 @@ const render = () => {
 
   camera.layers.set(0);
   finalComposer.render(scene, camera);
-  
+  stats.update();
   requestAnimationFrame(render);
 };
 init();
@@ -361,21 +389,20 @@ window.addEventListener("wheel", (event) => {
     180,
     255
   );
-  console.log("camera.position.y", camera.position.y);
+
   camera.position.x = clamp(
     (camera.position.x += event.deltaY * 0.09),
     50,
     255
   );
-  console.log("camera.position.x", camera.position.x);
+
   camera.position.z = clamp(
     (camera.position.z += event.deltaY * 0.09),
     50,
     255
   );
-  console.log("camera.position.z", camera.position.z);
+
   cameraY = clamp((cameraY -= event.deltaY * 0.015), 0, 165);
-  console.log("cameraY", cameraY);
 
   if (r < 11 && r > 0.1) {
     lightTubeOne.rotation.x += r * 0.004;
@@ -393,7 +420,7 @@ window.addEventListener("wheel", (event) => {
 // model
 loader = new FBXLoader();
 
-loader.load("model/strut-walking-slow.fbx", function (object) {
+loader.load(`${modelArraySrc[modelNo-1].model}`, function (object) {
   mixer = new THREE.AnimationMixer(object);
 
   const action = mixer.clipAction(object.animations[0]);
@@ -411,58 +438,41 @@ loader.load("model/strut-walking-slow.fbx", function (object) {
   meshHuman.add(object);
 });
 
-document.getElementById("scene2").addEventListener("click", function (object) {
+document.querySelector(".scene-switcher__button").addEventListener("click", function (object) {
+  audio.pause();
+  audio.currentTime = 0;
+  THREE.Cache.clear();
   meshHuman.clear(object);
 
-  const loaderG = new FBXLoader();
+  const loader = new FBXLoader();
+  
 
-  loaderG.load("model/gangnam-style-grandmom.fbx", function (objectG) {
-    mixer = new THREE.AnimationMixer(objectG);
+  loader.load(`${modelArraySrc[modelNo].model}`, function (object) {
+    mixer = new THREE.AnimationMixer(object);
 
-    const action = mixer.clipAction(objectG.animations[0]);
+    const action = mixer.clipAction(object.animations[0]);
     action.play();
 
-    objectG.traverse(function (child) {
+    object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
       }
     });
-    objectG.aspect = 0.3;
-    meshHuman.add(objectG);
-    
+    object.aspect = 0.3;
+    meshHuman.add(object);
   });
-  container.classList.remove("scene1");
-  container.classList.add("scene2");
-  audioSceneOne.pause();
-  audioSceneOne.currentTime = 0;
-  render();
-});
-
-document.getElementById("scene1").addEventListener("click", function (object) {
-  meshHuman.clear(object);
-
-  const loaderG = new FBXLoader();
-
-  loaderG.load("model/strut-walking-slow.fbx", function (objectG) {
-    mixer = new THREE.AnimationMixer(objectG);
-
-    const action = mixer.clipAction(objectG.animations[0]);
-    action.play();
-
-    objectG.traverse(function (child) {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
-    objectG.aspect = 0.3;
-    meshHuman.add(objectG);
-  });
-  container.classList.remove("scene2");
-    container.classList.add("scene1");
-    audioSceneTwo.pause();
-    audioSceneTwo.currentTime = 0;
+  document.querySelector('.canvas-hero').classList.remove(`scene-${modelNo}`);
+  audio = new Audio(`${modelArraySrc[modelNo].audio}`);
+  
+  if(modelNo == modelArraySrc.length-1){
+    modelNo--;
+  }else{
+    modelNo++;
+  }
+  
+  document.querySelector('.canvas-hero').classList.add(`scene-${modelNo}`)
+  
   render();
 });
 
@@ -470,19 +480,23 @@ render();
 
 //START AUDIO
 document.querySelector("canvas").addEventListener("click", () => {
-  if(container.classList.contains("scene1")) {
-    audioSceneOne.volume = 0.1;
-    audioSceneOne.play();
-    document.getElementById("cursor__info").classList.add("playing");
-  }
-  if(container.classList.contains("scene2")) {
-    audioSceneTwo.volume = 0.1;
-    audioSceneTwo.play();
-    document.getElementById("cursor__info").classList.add("playing");
-  }
+  audio.volume = 0.05;
+  audio.play()
 });
 
 //MINMAX
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+
+function createStats() {
+  var stats = new Stats();
+  stats.setMode(0);
+
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0';
+  stats.domElement.style.top = '0';
+
+  return stats;
 }
