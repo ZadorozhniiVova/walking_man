@@ -2,27 +2,62 @@
   "name": "walking_man",
   "version": "1.0.0",
   "description": "",
-  
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "start": "webpack --watch",
-    "prod": "webpack --mode=production --config webpack.config.js"
+    "dev": "webpack --mode development --watch ",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^6.7.3",
+    "@babel/core": "^7.20.12",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.20.2",
+    "@wordpress/babel-preset-default": "^7.9.0",
+    "@wordpress/create-block": "^4.9.0",
+    "@wordpress/element": "^5.2.0",
+    "@wordpress/scripts": "^19.2.4",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.2",
+    "browser-sync": "^2.27.11",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.7.5",
     "node-sass": "^8.0.0",
+    "postcss-loader": "^7.3.0",
+    "postcss-preset-env": "^8.0.1",
+    "rtlcss": "^3.5.0",
     "sass": "^1.62.1",
-    "sass-loader": "^13.2.2",
-    "style-loader": "^3.3.2",
+    "sass-loader": "^13.3.0",
+    "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.6",
+    "url-loader": "^4.1.1",
     "webpack": "^5.82.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "css-loader": "^6.7.4",
+    "cssnano": "^6.0.1"
+  },
+  "rtlcssConfig": {
+    "options": {
+      "autoRename": false,
+      "autoRenameStrict": false,
+      "blacklist": {},
+      "clean": true,
+      "greedy": false,
+      "processUrls": false,
+      "stringMap": []
+    },
+    "plugins": [],
+    "map": false
   },
   "dependencies": {
-    "three": "^0.150.1"
+    "clean-webpack-plugin": "^4.0.0",
+    "gsap": "^3.11.5",
+    "lozad": "^1.16.0",
+    "three": "^0.150.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-fix-style-only-entries": "^0.6.1"
   }
 }

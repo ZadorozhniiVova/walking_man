@@ -1,0 +1,70 @@
+.welcome {
+    z-index: 10;
+    background-color: black;
+    position: fixed;
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 100vh;
+    height: 100vh;
+    transform-origin: top;
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+
+    &.rotate {
+        transform: rotateX(90deg);
+        -webkit-transform: rotateX(90deg);
+        -moz-transform: rotateX(90deg);
+        -ms-transform: rotateX(90deg);
+        -o-transform: rotateX(90deg);
+        height: 0vh;
+    }
+
+    &__inner {
+        background-color: black;
+        width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        //background-color: black;
+        //min-height: 100vh;
+        //max-width: 100vw;
+        //height: 100%;
+        //width: 100vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-origin: center;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+
+        .letter {
+            opacity: 0;
+        }
+
+        .line {
+            opacity: 0;
+        }
+    }
+}

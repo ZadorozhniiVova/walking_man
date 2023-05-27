@@ -11,7 +11,7 @@
   height: 100vh;
   background: black;
 
-  &__content {
+  .preloader__content {
     font-family: "Russo One", sans-serif;
     position: relative;
     display: flex;
@@ -23,23 +23,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
+    
+  }
+  .preloader__content svg{
+    height: 112px;
+    animation: height 3.5s infinite alternate;
+    -webkit-animation: height 3.5s infinite alternate;
+    width: 100%;
+  }
+  .preloader__content svg text {
+    text-transform: uppercase;
+    animation: stroke 3.5s infinite alternate;
+    stroke-width: 2;
+    stroke: #365fa0;
+    font-size: 100px;
+    height: fit-content;
   }
 }
 
-svg{
-  height: 112px;
-  animation: height 3.5s infinite alternate;
-  -webkit-animation: height 3.5s infinite alternate;
-  width: 100%;
-}
-svg text {
-  text-transform: uppercase;
-  animation: stroke 3.5s infinite alternate;
-  stroke-width: 2;
-  stroke: #365fa0;
-  font-size: 100px;
-  height: fit-content;
-}
+
+
 @keyframes stroke {
   0% {
     fill: rgba(72, 138, 20, 0);

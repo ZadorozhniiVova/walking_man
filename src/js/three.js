@@ -1,21 +1,17 @@
-import "./scss/_preloader.scss";
-import "./scss/_style.scss";
-import "./scss/_cursor.scss";
-import "./scss/_scene-switcher.scss";
-import "./js/preloader.js";
-import "./js/cursor.js";
-import "./js/music.js";
-import * as THREE from "../node_modules/three/build/three.module.js";
+import * as THREE from "three";
+
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
-import { EffectComposer } from "../node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
-import { UnrealBloomPass } from "../node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { RenderPass } from "../node_modules/three/examples/jsm/postprocessing/RenderPass.js";
-import { ShaderPass } from "../node_modules/three/examples/jsm/postprocessing/ShaderPass.js";
-import Stats from 'three/examples/jsm/libs/stats.module'
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 
-let container,
-stats,
+import Stats from "three/examples/jsm/libs/stats.module";
+
+let canvas,
+  container,
+  stats,
   cameraY,
   scene,
   camera,
@@ -36,14 +32,19 @@ let SCREEN_HEIGHT = window.innerHeight;
 let aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
 
 let modelArraySrc = [
-  {model:"model/strut-walking-slow.fbx",
-  audio:"https://zadorozhniivova.github.io/walking_man/music/background-music.mp3"},
-  {model:"model/gangnam-style-grandmom.fbx",
-  audio:"https://zadorozhniivova.github.io/walking_man/music/gangnam-style.mp3"}
-  ,
+  {
+    model: "model/strut-walking-slow.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/walking_man/music/background-music.mp3",
+  },
+  {
+    model: "model/gangnam-style-grandmom.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/walking_man/music/gangnam-style.mp3",
+  },
 ];
 let modelNo = 1;
-let audio = new Audio(`${modelArraySrc[modelNo-1].audio}`);
+let audio = new Audio(`${modelArraySrc[modelNo - 1].audio}`);
 
 const materials = [];
 let r = 0;
@@ -56,14 +57,14 @@ const params = {
 };
 
 const init = () => {
-
   //Stats
   stats = createStats();
-  document.body.appendChild( stats.domElement );
+  document.body.appendChild(stats.domElement);
   //CONTAINER
+  canvas = document.querySelector(".canvas");
   container = document.createElement("div");
   container.classList.add("canvas-hero");
-  document.body.appendChild(container);
+  canvas.appendChild(container);
   // SCENE
   scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x000000, 1, 5000);
@@ -420,7 +421,7 @@ window.addEventListener("wheel", (event) => {
 // model
 loader = new FBXLoader();
 
-loader.load(`${modelArraySrc[modelNo-1].model}`, function (object) {
+loader.load(`${modelArraySrc[modelNo - 1].model}`, function (object) {
   mixer = new THREE.AnimationMixer(object);
 
   const action = mixer.clipAction(object.animations[0]);
@@ -438,51 +439,51 @@ loader.load(`${modelArraySrc[modelNo-1].model}`, function (object) {
   meshHuman.add(object);
 });
 
-document.querySelector(".scene-switcher__button").addEventListener("click", function (object) {
-  audio.pause();
-  audio.currentTime = 0;
-  THREE.Cache.clear();
-  meshHuman.clear(object);
+document
+  .querySelector(".scene-switcher__button")
+  .addEventListener("click", function (object) {
+    audio.pause();
+    audio.currentTime = 0;
+    THREE.Cache.clear();
+    meshHuman.clear(object);
 
-  const loader = new FBXLoader();
-  
+    const loader = new FBXLoader();
 
-  loader.load(`${modelArraySrc[modelNo].model}`, function (object) {
-    mixer = new THREE.AnimationMixer(object);
+    loader.load(`${modelArraySrc[modelNo].model}`, function (object) {
+      mixer = new THREE.AnimationMixer(object);
 
-    const action = mixer.clipAction(object.animations[0]);
-    action.play();
+      const action = mixer.clipAction(object.animations[0]);
+      action.play();
 
-    object.traverse(function (child) {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
+      object.traverse(function (child) {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+      object.aspect = 0.3;
+      meshHuman.add(object);
     });
-    object.aspect = 0.3;
-    meshHuman.add(object);
+    document.querySelector(".canvas-hero").classList.remove(`scene-${modelNo}`);
+    audio = new Audio(`${modelArraySrc[modelNo].audio}`);
+
+    if (modelNo == modelArraySrc.length - 1) {
+      modelNo--;
+    } else {
+      modelNo++;
+    }
+
+    document.querySelector(".canvas-hero").classList.add(`scene-${modelNo}`);
+
+    render();
   });
-  document.querySelector('.canvas-hero').classList.remove(`scene-${modelNo}`);
-  audio = new Audio(`${modelArraySrc[modelNo].audio}`);
-  
-  if(modelNo == modelArraySrc.length-1){
-    modelNo--;
-  }else{
-    modelNo++;
-  }
-  
-  document.querySelector('.canvas-hero').classList.add(`scene-${modelNo}`)
-  
-  render();
-});
 
 render();
 
 //START AUDIO
 document.querySelector(".canvas-hero").addEventListener("click", () => {
-  console.log('click')
   audio.volume = 0.1;
-  audio.play()
+  audio.play();
 });
 
 //MINMAX
@@ -490,14 +491,20 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-
 function createStats() {
   var stats = new Stats();
   stats.setMode(0);
 
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0';
-  stats.domElement.style.top = '0';
+  stats.domElement.style.position = "absolute";
+  stats.domElement.style.left = "0";
+  stats.domElement.style.top = "0";
 
   return stats;
 }
+
+// SOUND SWITCHER
+let soundSwitcher = document.querySelector(".sound-switcher");
+
+soundSwitcher.addEventListener("click", function () {
+  audio.pause();
+});
