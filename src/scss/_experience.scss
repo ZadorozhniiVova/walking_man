@@ -1,28 +1,8 @@
 .experience {
     z-index: 2;
     height: 400vh;
+    width: 100%;
     color: white;
 
-    svg {
-        max-width: 600px;
-        overflow: visible;
-        margin-top: 60vh;
-    }
-
-    .ball {
-        fill: white;
-        visibility: hidden;
-    }
-
-    .line {
-        fill: none;
-        stroke: white;
-        stroke-width: 2px;
-    }
-    text {
-        fill: white;
-        font-size: 15px;
-        font-family: "Signika Negative", sans-serif;
-        visibility: hidden;
-    }
+    
 }

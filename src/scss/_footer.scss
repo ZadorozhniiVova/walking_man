@@ -1,32 +1,58 @@
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    &__inner {
-        max-width: 1440px;
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100vw;
+  z-index: 99;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    a {
+      width: 24px;
+      height: 24px;
+      display: block;
+      cursor: pointer;
+      svg {
         width: 100%;
-        margin: 0 auto;
-    }
-
-    &__socials {
-        display: flex;
-        gap: 20px;
-
-        a {
-            svg {
-                path {
-                    stroke: white;
-                }
-            }
-
-            &:hover{
-                svg{
-                    path{
-                        fill: white;
-                    }
-                }
-            }
+        height: 100%;
+        transition: all 0.15s ease-in-out;
+        -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        path,
+        polygon,
+        circle {
+          stroke: white;
+          fill: #666666;
+          transition: all 0.15s ease-in-out;
+          -webkit-transition: all 0.15s ease-in-out;
+          -moz-transition: all 0.15s ease-in-out;
+          -ms-transition: all 0.15s ease-in-out;
+          -o-transition: all 0.15s ease-in-out;
         }
+      }
+
+      &:hover {
+        svg {
+          path,
+          polygon,
+          circle {
+            fill: white;
+          }
+        }
+      }
     }
+  }
 }

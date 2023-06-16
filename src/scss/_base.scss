@@ -1,0 +1,36 @@
+body {
+    font-family: "Dosis", sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  
+    * {
+      cursor: inherit;
+    }
+  }
+  
+  .overflow{
+    height: 100vh;
+    overflow: hidden;
+  }
+
+
+.container{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+main{
+    width: 100vw !important;
+}

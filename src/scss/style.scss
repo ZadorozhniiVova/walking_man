@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
+@import "./_base.scss";
 @import "./_welcome.scss";
+@import "./cards.scss";
 @import "./_footer.scss";
 @import "./_canvas.scss";
 @import "./_cursor.scss";
@@ -14,25 +16,3 @@
 @import "./_experience.scss";
 @import "./_tipography.scss";
 
-body {
-  font-family: "Dosis", sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: none;
-  color: white;
-  overflow: hidden;
-  // overflow-x: hidden;
-  &::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
-  }
-
-  * {
-    cursor: inherit;
-  }
-}

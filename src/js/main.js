@@ -1,6 +1,7 @@
+import "./library/particles.min.js";
 import "./welcome.js";
 import "./three.js";
-import "./preloader";
+import "./projects";
 import "./cursor.js";
 import "./music.js";
 import "./sound-switcher.js";

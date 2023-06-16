@@ -384,38 +384,40 @@ camera.position.x = 50;
 camera.position.z = 50;
 
 window.addEventListener("wheel", (event) => {
-  r = clamp((r += event.deltaY * 0.001), 0, 11);
-  camera.position.y = clamp(
-    (camera.position.y += event.deltaY * 0.007),
-    180,
-    255
-  );
+  if (document.body.classList.contains("rotate")) {
+    r = clamp((r += event.deltaY * 0.001), 0, 11);
+    camera.position.y = clamp(
+      (camera.position.y += event.deltaY * 0.007),
+      180,
+      255
+    );
 
-  camera.position.x = clamp(
-    (camera.position.x += event.deltaY * 0.09),
-    50,
-    255
-  );
+    camera.position.x = clamp(
+      (camera.position.x += event.deltaY * 0.09),
+      50,
+      255
+    );
 
-  camera.position.z = clamp(
-    (camera.position.z += event.deltaY * 0.09),
-    50,
-    255
-  );
+    camera.position.z = clamp(
+      (camera.position.z += event.deltaY * 0.09),
+      50,
+      255
+    );
 
-  cameraY = clamp((cameraY -= event.deltaY * 0.015), 0, 165);
+    cameraY = clamp((cameraY -= event.deltaY * 0.015), 0, 165);
 
-  if (r < 11 && r > 0.1) {
-    lightTubeOne.rotation.x += r * 0.004;
-    lightTubeOne.rotation.z += r * 0.004;
+    if (r < 11 && r > 0.1) {
+      lightTubeOne.rotation.x += r * 0.004;
+      lightTubeOne.rotation.z += r * 0.004;
 
-    lightTubeTwo.rotation.x += r * 0.004;
-    lightTubeTwo.rotation.z += r * 0.004;
+      lightTubeTwo.rotation.x += r * 0.004;
+      lightTubeTwo.rotation.z += r * 0.004;
 
-    lightTubeThree.rotation.x += r * 0.004;
-    lightTubeThree.rotation.z += r * 0.004;
+      lightTubeThree.rotation.x += r * 0.004;
+      lightTubeThree.rotation.z += r * 0.004;
+    }
+    return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
   }
-  return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
 });
 
 // model
@@ -441,10 +443,11 @@ loader.load(`${modelArraySrc[modelNo - 1].model}`, function (object) {
 
 document
   .querySelector(".scene-switcher__button")
-  .addEventListener("click", function (object) {
+  .addEventListener("click", function (event, object) {
     audio.pause();
     audio.currentTime = 0;
     THREE.Cache.clear();
+    event.stopPropagation();
     meshHuman.clear(object);
 
     const loader = new FBXLoader();
@@ -480,12 +483,6 @@ document
 
 render();
 
-//START AUDIO
-document.querySelector(".canvas-hero").addEventListener("click", () => {
-  audio.volume = 0.1;
-  audio.play();
-});
-
 //MINMAX
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -505,6 +502,27 @@ function createStats() {
 // SOUND SWITCHER
 let soundSwitcher = document.querySelector(".sound-switcher");
 
-soundSwitcher.addEventListener("click", function () {
-  audio.pause();
+soundSwitcher.addEventListener("click", function (event) {
+  if (!soundSwitcher.classList.contains("sound-toggle")) {
+    soundSwitcher.classList.toggle("sound-toggle");
+    audio.pause();
+    event.stopPropagation();
+  }else if ( soundSwitcher.classList.contains("sound-toggle")) {
+    soundSwitcher.classList.remove("sound-toggle");
+    audio.volume = 0.1;
+    audio.play();
+  }
+});
+
+
+//START AUDIO
+
+document.body.addEventListener("click", () => {
+  if (document.body.classList.contains("rotate")) {
+    audio.volume = 0.1;
+    audio.play();
+  }
+  if (soundSwitcher.classList.contains("sound-toggle")){
+    soundSwitcher.classList.remove("sound-toggle");
+  }
 });

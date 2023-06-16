@@ -75,4 +75,7 @@ module.exports = {
       filename: "main.css",
     }),
   ],
+  externals: {
+    gsap: 'gsap',
+},
 };

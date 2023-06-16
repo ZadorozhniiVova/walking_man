@@ -1,8 +1,5 @@
 .scene-switcher {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
+    
 
     &__inner {
         width: 100%;
@@ -32,6 +29,7 @@
         -moz-border-radius: 20px;
         -ms-border-radius: 20px;
         -o-border-radius: 20px;
+        cursor: pointer;
         &:hover {
             background: transparent;
             color: white;

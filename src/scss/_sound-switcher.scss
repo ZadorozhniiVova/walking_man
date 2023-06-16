@@ -1,35 +1,27 @@
 .sound-switcher {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    width: 40px;
-    height: 60px;
+    position: relative;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+   
 
     svg {
-        polygon {
-            fill: white;
-        }
-
+        polygon,
         path {
-            fill: white;
+            fill: #666666;
         }
 
         &:hover {
-            polygon {
-                fill: gold;
-            }
-
+            polygon,
             path {
-                fill: gold;
+                fill: white;
             }
         }
     }
 }
 
-.sound-switcher svg::hover .sound-switcher svg polygon {
-    fill: gold;
+.sound-toggle svg polygon,
+.sound-toggle svg path  {
+    fill: white;
 }
 
-.sound-switcher svg::hover .sound-switcher svg path {
-    fill: gold;
-}
