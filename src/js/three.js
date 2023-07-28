@@ -7,11 +7,11 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 
-import Stats from "three/examples/jsm/libs/stats.module";
+// import Stats from "three/examples/jsm/libs/stats.module";
 
 let canvas,
   container,
-  stats,
+  // stats,
   cameraY,
   scene,
   camera,
@@ -64,8 +64,8 @@ const params = {
 
 const init = () => {
   //Stats
-  stats = createStats();
-  document.body.appendChild(stats.domElement);
+  // stats = createStats();
+  // document.body.appendChild(stats.domElement);
   //CONTAINER
   canvas = document.querySelector(".canvas");
   container = document.createElement("div");
@@ -377,7 +377,7 @@ const render = () => {
 
   camera.layers.set(0);
   finalComposer.render(scene, camera);
-  stats.update();
+  // stats.update();
   requestAnimationFrame(render);
 };
 init();
@@ -497,16 +497,16 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-function createStats() {
-  var stats = new Stats();
-  stats.setMode(0);
+// function createStats() {
+//   var stats = new Stats();
+//   stats.setMode(0);
 
-  stats.domElement.style.position = "absolute";
-  stats.domElement.style.left = "0";
-  stats.domElement.style.top = "0";
+//   stats.domElement.style.position = "absolute";
+//   stats.domElement.style.left = "0";
+//   stats.domElement.style.top = "0";
 
-  return stats;
-}
+//   return stats;
+// }
 
 // SOUND SWITCHER
 let soundSwitcher = document.querySelector(".sound-switcher");
