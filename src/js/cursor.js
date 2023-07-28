@@ -20,12 +20,12 @@ requestAnimationFrame(function loop() {
 });
 
 document.addEventListener("mousedown", (e) => { 
-  cursor.style.background = 'red';
-  cursorBorder.style.boxShadow = '0 0 0 1px red';
+  cursor.style.background = 'rgb(45, 212, 191)';
+  cursorBorder.style.boxShadow = '0 0 0 1px rgb(45, 212, 191)';
 });
 document.addEventListener("mouseup", (e) => { 
   cursor.style.background = 'white';
-  cursorBorder.style.boxShadow = '0 0 0 1px white';
+  cursorBorder.style.boxShadow = '0 0 0 1px rgb(45, 212, 191)';
 });
 
 document.addEventListener("mousemove", (e) => { 

@@ -1,39 +1,36 @@
 .scene-switcher {
-    
 
-    &__inner {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-
-        
+  &__button {
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    min-width: 130px;
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: rgb(100 116 139 / var(--tw-text-opacity));
+    padding: 10px 20px;
+    border: 1px solid white;
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -ms-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      color: $neon;
+      border: 1px solid $neon;
     }
-    &__button {
-        min-width: 130px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: white;
-        color: black;
-        padding: 10px 20px;
-        transition: 0.3s ease-in-out;
-        -webkit-transition: 0.3s ease-in-out;
-        -moz-transition: 0.3s ease-in-out;
-        -ms-transition: 0.3s ease-in-out;
-        -o-transition: 0.3s ease-in-out;
-        border-radius: 20px;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        -ms-border-radius: 20px;
-        -o-border-radius: 20px;
-        cursor: pointer;
-        &:hover {
-            background: transparent;
-            color: white;
-            border: 1px solid white;
-        }
-    }
+  }
 }

@@ -1,69 +1,71 @@
-body{
-  #cursor{
+body {
+  #cursor {
     display: none;
-    
   }
-  #cursor-border{
+  #cursor-border {
     display: none;
   }
 }
 
-body.loaded{
-  #cursor{
+body.loaded {
+  #cursor {
     display: block;
   }
-  #cursor-border{
+  #cursor-border {
     display: block;
   }
 }
 
 #cursor {
-    position: fixed;
-    top: -5px;
-    left: -5px;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 999;
-    
-  }
-  
-  #cursor-border {
-    --size: 50px;
-    position: fixed;
-    top: calc(var(--size) / -2);
-    left: calc(var(--size) / -2);
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px white;
-    pointer-events: none;
-    transition: top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out,
-      height 0.15s ease-out, background-color 0.15s ease-out;
-    z-index: 999;
-    
-  }
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+}
 
-  #cursor__info{
-    position: absolute;
-    left: 60px;
-    bottom: -5px;
-    width: max-content;
-    font-size: 12px;
-    word-break: break-word;
-    text-shadow: 1px 1px 2px white, 0 0 1em gold, 0 0 0.2em white;
-    transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    opacity: 0;
-    &.not-playing{
-      opacity: 1;
-    }
-    &.playing{
-      opacity: 0;
-    }
+#cursor-border {
+  --size: 50px;
+  position: fixed;
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px white;
+  pointer-events: none;
+  transition: top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out,
+    height 0.15s ease-out, background-color 0.15s ease-out;
+  z-index: 999;
+}
+
+#cursor__info {
+  position: absolute;
+  left: 60px;
+  bottom: -5px;
+  width: max-content;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  word-break: break-word;
+  font-weight: 600;
+  font-size: .70rem;
+  line-height: 1rem;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  opacity: 0;
+  &.not-playing {
+    opacity: 1;
   }
+  &.playing {
+    opacity: 0;
+  }
+}
+
+

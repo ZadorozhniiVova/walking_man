@@ -1,13 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
+//Base
 @import "./_base.scss";
+//Header
+@import "./_header.scss";
+
+//Content
+@import "./_content.scss";
+
+//Main
+@import "./main.scss";
+
+//About
+@import "./about.scss";
+
+//Experience  
+@import "./experience.scss";
+
+//Projects
+@import "./projects.scss";
+
 @import "./_welcome.scss";
-@import "./cards.scss";
-@import "./_footer.scss";
+
+//Animation 
+@import "./keyframes.scss";
+
+
 @import "./_canvas.scss";
 @import "./_cursor.scss";
 @import "./_preloader.scss";
@@ -16,3 +33,6 @@
 @import "./_experience.scss";
 @import "./_tipography.scss";
 
+
+//Footer
+@import "./_footer.scss";

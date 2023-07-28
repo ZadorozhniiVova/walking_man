@@ -42,10 +42,16 @@ let modelArraySrc = [
     audio:
       "https://zadorozhniivova.github.io/walking_man/music/gangnam-style.mp3",
   },
+  {
+    model: "model/mexico.fbx",
+    audio:
+      // "https://zadorozhniivova.github.io/walking_man/music/desperado.mp3",
+      "./music/desperado.mp3",
+  },
 ];
 let modelNo = 1;
 let audio = new Audio(`${modelArraySrc[modelNo - 1].audio}`);
-
+let audioPlay = false;
 const materials = [];
 let r = 0;
 const clock = new THREE.Clock();
@@ -85,7 +91,7 @@ const init = () => {
   light.layers.enable(1);
   scene.add(light);
 
-  const dirLight = new THREE.DirectionalLight(0xffca00, 3);
+  const dirLight = new THREE.DirectionalLight(0xffca00, 2);
   dirLight.position.set(0, 3, 0);
   dirLight.castShadow = true;
   dirLight.shadow.camera.top = 180;
@@ -96,7 +102,7 @@ const init = () => {
   dirLight.layers.enable(1);
   scene.add(dirLight);
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 5);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.7);
   hemiLight.position.set(100, 200, 100);
   hemiLight.layers.enable(0);
   hemiLight.layers.enable(1);
@@ -384,8 +390,8 @@ camera.position.x = 50;
 camera.position.z = 50;
 
 window.addEventListener("wheel", (event) => {
-  if (document.body.classList.contains("rotate")) {
-    r = clamp((r += event.deltaY * 0.001), 0, 11);
+  // if (document.body.classList.contains("rotate")) {
+    r = clamp((r += event.deltaY * 0.0015), 0, 11);
     camera.position.y = clamp(
       (camera.position.y += event.deltaY * 0.007),
       180,
@@ -404,7 +410,7 @@ window.addEventListener("wheel", (event) => {
       255
     );
 
-    cameraY = clamp((cameraY -= event.deltaY * 0.015), 0, 165);
+    cameraY = clamp((cameraY -= event.deltaY * 0.04), 0, 165);
 
     if (r < 11 && r > 0.1) {
       lightTubeOne.rotation.x += r * 0.004;
@@ -417,7 +423,7 @@ window.addEventListener("wheel", (event) => {
       lightTubeThree.rotation.z += r * 0.004;
     }
     return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
-  }
+  // }
 });
 
 // model
@@ -445,6 +451,8 @@ document
   .querySelector(".scene-switcher__button")
   .addEventListener("click", function (event, object) {
     audio.pause();
+    audioPlay = false;
+    cursorInfoShow()
     audio.currentTime = 0;
     THREE.Cache.clear();
     event.stopPropagation();
@@ -470,8 +478,9 @@ document
     document.querySelector(".canvas-hero").classList.remove(`scene-${modelNo}`);
     audio = new Audio(`${modelArraySrc[modelNo].audio}`);
 
+    
     if (modelNo == modelArraySrc.length - 1) {
-      modelNo--;
+      modelNo = 0;
     } else {
       modelNo++;
     }
@@ -507,10 +516,15 @@ soundSwitcher.addEventListener("click", function (event) {
     soundSwitcher.classList.toggle("sound-toggle");
     audio.pause();
     event.stopPropagation();
+    audioPlay = false;
+    cursorInfoShow()
   }else if ( soundSwitcher.classList.contains("sound-toggle")) {
     soundSwitcher.classList.remove("sound-toggle");
     audio.volume = 0.1;
     audio.play();
+    audio.loop = true;
+    audioPlay = true;
+    cursorInfoShow()
   }
 });
 
@@ -521,8 +535,64 @@ document.body.addEventListener("click", () => {
   if (document.body.classList.contains("rotate")) {
     audio.volume = 0.1;
     audio.play();
+    audio.loop = true;
+    audioPlay = true;
+    cursorInfoShow()
   }
   if (soundSwitcher.classList.contains("sound-toggle")){
     soundSwitcher.classList.remove("sound-toggle");
   }
 });
+
+
+function cursorInfoShow() {
+  let cursorInfo = document.querySelector("#cursor__info");
+
+  if(audioPlay === true){
+    cursorInfo.style.opacity = 0;
+  } else if(audioPlay === false) {
+    cursorInfo.style.opacity = 1;
+  }
+}
+// document.addEventListener("DOMContentLoaded", function() {
+//   // Находим кнопку по ее идентификатору
+//   const scrollButton = document.querySelector('#scroll');
+
+//   // Добавляем обработчик события при клике на кнопку
+//   scrollButton.addEventListener("click", function() {
+//     // Вычисляем текущую позицию прокрутки страницы
+//     const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+//     // Вычисляем количество пикселей, которое нужно прокрутить до 1000px
+//     const distance = 1000 - currentPosition;
+
+//     // Задаем параметры для плавной анимации прокрутки
+//     const duration = 1000; // Длительность анимации в миллисекундах
+//     const startTime = performance.now(); // Время начала анимации
+
+//     // Функция анимации прокрутки
+//     function scrollTo(targetPosition) {
+//       // Вычисляем прошедшее время анимации
+//       const currentTime = performance.now();
+//       const elapsedTime = currentTime - startTime;
+
+//       // Вычисляем прогресс анимации от 0 до 1
+//       const progress = Math.min(elapsedTime / duration, 1);
+
+//       // Вычисляем новую позицию прокрутки
+//       const newPosition = currentPosition + distance * progress;
+
+//       // Прокручиваем страницу до новой позиции
+//       document.documentElement.scrollTop = newPosition;
+//       document.body.scrollTop = newPosition;
+
+//       // Если анимация не закончена, продолжаем анимацию
+//       if (progress < 1) {
+//         requestAnimationFrame(scrollTo.bind(null, targetPosition));
+//       }
+//     }
+
+//     // Запускаем анимацию прокрутки до 1000px
+//     scrollTo(1000);
+//   });
+// });

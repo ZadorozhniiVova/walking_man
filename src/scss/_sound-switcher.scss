@@ -14,7 +14,7 @@
         &:hover {
             polygon,
             path {
-                fill: white;
+                fill: $neon;
             }
         }
     }
@@ -22,6 +22,6 @@
 
 .sound-toggle svg polygon,
 .sound-toggle svg path  {
-    fill: white;
+    fill: $neon;
 }
 

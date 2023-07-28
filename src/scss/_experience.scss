@@ -1,8 +1,37 @@
 .experience {
-    z-index: 2;
-    height: 400vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 5em;
+  &__item {
+    display: flex;
     width: 100%;
-    color: white;
-
+    gap: 1.5rem;
+    text-decoration: none;
+    line-height: 1.25;
+    font-weight: 500;
+    &:last-child {
+      margin-bottom: 0;
+    }
     
+  }
+
+  &__date {
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    z-index: 10;
+    color: rgb(100 116 139 / var(--tw-text-opacity));
+    min-width: 125px;
+    width: 125px;
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+
+  &__text {
+    margin-top: 0.5rem;
+  }
+  
 }

@@ -1,0 +1,40 @@
+.project {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 5em;
+  &__item {
+    display: flex;
+    width: 100%;
+    gap: 1.5rem;
+    text-decoration: none;
+    line-height: 1.25;
+    font-weight: 500;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__image{
+    --tw-translate-y: 0.25rem;
+    transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    border-radius: 0.25rem;
+    border-width: 2px;
+    width: 125px;
+    min-width: 125px;
+    height: 60px;
+    overflow: hidden;
+    border-color: rgba(226,232,240,.3);
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+  }
+
+  &__text{
+    font-size: .875rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+}
