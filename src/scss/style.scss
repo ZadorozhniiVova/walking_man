@@ -1,6 +1,8 @@
-
+//Breakpoints
+@import "./_breakpoints.scss";
 //Base
 @import "./_base.scss";
+
 //Header
 @import "./_header.scss";
 
@@ -14,7 +16,7 @@
 @import "./about.scss";
 
 //Experience  
-@import "./experience.scss";
+@import "./_experience.scss";
 
 //Projects
 @import "./projects.scss";
@@ -24,12 +26,14 @@
 //Animation 
 @import "./keyframes.scss";
 
+//Burger
+@import "./burger.scss";
 
 @import "./_canvas.scss";
 @import "./_cursor.scss";
 @import "./_preloader.scss";
 @import "./_scene-switcher.scss";
-@import "./_sound-switcher.scss";
+@import "./sound-switcher.scss";
 @import "./_experience.scss";
 @import "./_tipography.scss";
 

@@ -1,4 +1,5 @@
 $neon: rgb(45, 212, 191);
+$white: rgb(255, 255, 255);
 
 
 
@@ -25,7 +26,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: $white;
 
     &::-webkit-scrollbar {
       display: none;

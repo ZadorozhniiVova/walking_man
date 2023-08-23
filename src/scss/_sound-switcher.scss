@@ -1,27 +1,83 @@
 .sound-switcher {
-    position: relative;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  width: 40px;
+  height: 30px;
 
-    svg {
-        polygon,
-        path {
-            fill: #666666;
-        }
-
-        &:hover {
-            polygon,
-            path {
-                fill: $neon;
-            }
-        }
+  svg {
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -ms-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    polygon,
+    path {
+      fill: #666666;
     }
+
+    &:hover {
+      polygon,
+      path {
+        fill: $neon;
+      }
+    }
+  }
+  .switch-off{
+    opacity: 0;
+  }
+  .switch-on{
+    opacity: 0;
+  }
+  & .sound-on:hover{
+
+    & .switch-off{
+        opacity: 1;
+    }
+  }
+
+  &:hover{
+    & .switch-on{
+        opacity: 1;
+    }
+  }
 }
 
-.sound-toggle svg polygon,
-.sound-toggle svg path  {
-    fill: $neon;
+#wave {
+    height: 40px;
+    width: 40px;
+  fill: #fff;
 }
 
+.sound-on {
+  @for $i from 1 through 9 {
+    #Line_#{$i} {
+      animation: pulse 1s infinite;
+      animation-delay: $i * 0.15s;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scaleY(1);
+      transform-origin: 50% 50%;
+    }
+
+    50% {
+      transform: scaleY(0.7);
+      transform-origin: 50% 50%;
+    }
+
+    100% {
+      transform: scaleY(1);
+      transform-origin: 50% 50%;
+    }
+  }
+}
+
+.sound-on svg polygon,
+.sound-on svg path {
+  fill: $neon;
+}

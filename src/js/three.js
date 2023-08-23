@@ -176,7 +176,7 @@ const initComposer = () => {
   // 光晕
   const bloomPass = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    1.5,
+    0.5,
     0.4,
     0.85
   );
@@ -512,14 +512,15 @@ function clamp(value, min, max) {
 let soundSwitcher = document.querySelector(".sound-switcher");
 
 soundSwitcher.addEventListener("click", function (event) {
-  if (!soundSwitcher.classList.contains("sound-toggle")) {
-    soundSwitcher.classList.toggle("sound-toggle");
+  if (soundSwitcher.classList.contains("sound-on")) {
+    soundSwitcher.classList.toggle("sound-on");
     audio.pause();
     event.stopPropagation();
     audioPlay = false;
     cursorInfoShow()
-  }else if ( soundSwitcher.classList.contains("sound-toggle")) {
-    soundSwitcher.classList.remove("sound-toggle");
+    
+  }else if ( !soundSwitcher.classList.contains("sound-on")) {
+    soundSwitcher.classList.remove("sound-on");
     audio.volume = 0.1;
     audio.play();
     audio.loop = true;
@@ -539,8 +540,8 @@ document.body.addEventListener("click", () => {
     audioPlay = true;
     cursorInfoShow()
   }
-  if (soundSwitcher.classList.contains("sound-toggle")){
-    soundSwitcher.classList.remove("sound-toggle");
+  if (!soundSwitcher.classList.contains("sound-on")){
+    soundSwitcher.classList.add("sound-on");
   }
 });
 

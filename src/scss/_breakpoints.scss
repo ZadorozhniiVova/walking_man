@@ -1,0 +1,22 @@
+$desktop: 1920px;
+$tablet: 1024px;
+$mobile: 768px;
+
+@mixin media($point) {
+  @if $point==desktop {
+    @media (max-width: $desktop) {
+      @content;
+    }
+  }
+  @if $point==tablet {
+    @media (max-width: $tablet) {
+      @content;
+    }
+  }
+  @if $point==mobile {
+    @media (max-width: $mobile) {
+      @content;
+    }
+  }
+}
+

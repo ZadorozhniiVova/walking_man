@@ -1,4 +1,8 @@
 .about{
     margin-bottom: 9rem;
     scroll-margin-top: 6rem;
+
+    @include media($tablet){
+        margin-bottom: 4rem;
+    }
 }
