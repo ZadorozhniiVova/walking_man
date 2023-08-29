@@ -34,3 +34,13 @@ if (animItems.length > 0) {
 		animOnScroll();
 	}, 300 );
 }
+
+const header = document.querySelector('.header');
+
+document.addEventListener('scroll', () => {
+    if (document.documentElement.scrollTop > 0) {
+        header.classList.add('scroll');
+    } else {
+        header.classList.remove('scroll');
+    }
+});

@@ -32,5 +32,11 @@
       color: $neon;
       border: 1px solid $neon;
     }
+
+    @include media(tablet){
+      grid-area: 1 / 1 / 2 / 3;
+      font-size: .6rem;
+      max-width: 100%;
+    }
   }
 }

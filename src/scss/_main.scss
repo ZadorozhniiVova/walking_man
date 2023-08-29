@@ -10,19 +10,27 @@
 
   @include media(tablet) {
     width: 100%;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
 section {
   h2 {
+    font-size: 1.5rem;
     opacity: 0;
     transform: translateX(150px);
     -webkit-transform: translateX(150px);
     -moz-transform: translateX(150px);
     -ms-transform: translateX(150px);
     -o-transform: translateX(150px);
+
+    @include media(tablet) {
+      font-size: 1.25rem;
+      text-align: center;
+    }
+
+    
     &._active {
       opacity: 1;
       transform: translateX(0);
@@ -30,6 +38,12 @@ section {
       -moz-transform: translateX(0);
       -ms-transform: translateX(0);
       -o-transform: translateX(0);
+    }
+  }
+
+  p{
+    @include media(tablet) {
+      font-size: 0.75rem;
     }
   }
 }
