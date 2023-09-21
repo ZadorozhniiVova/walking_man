@@ -137,10 +137,10 @@ const init = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
   // LIGHT
-  const light = new THREE.AmbientLight(0xffffff, 1);
-  light.layers.enable(0);
-  light.layers.enable(0.2);
-  scene.add(light);
+  // const light = new THREE.AmbientLight(0xffffff, 1);
+  // light.layers.enable(0);
+  // light.layers.enable(0.2);
+  // scene.add(light);
 
   const dirLight = new THREE.DirectionalLight(0xffffff, 1);
   dirLight.position.set(0, 3, 0);
