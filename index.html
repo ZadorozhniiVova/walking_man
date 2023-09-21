@@ -1,973 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zadorozhnii Volodymyr</title>
-    <link rel="stylesheet" href="./dist/main.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script src="
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brightech Team</title>
+  <link rel="stylesheet" href="./dist/main.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src="
 https://cdn.jsdelivr.net/npm/gsap-drawsvg@1.0.0/drawsvgmin.min.js
 "></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+    
+</head>
 
-  <!-- <body class="loaded overflow"> -->
-  <body class="loaded rotate">
-    <!-- <section class="welcome">-->
-    <section class="welcome rotate">
-      <div class="welcome__inner container">
-        <div id="particles-js"></div>
-        <h1 class="welcome__title title1">
-          <span class="text-wrapper">
-            <span class="line line1"></span>
-            <span class="letters">Hello</span>
-          </span>
-        </h1>
-        <h2 class="welcome__title title2">
-          <span class="text-wrapper">
-            <span class="line line1"></span>
-            <span class="letters">Nice to see you</span>
-          </span>
-        </h2>
-        <h2 class="welcome__title title3">
-          <span class="text-wrapper">
-            <span class="line line1"></span>
-            <span class="letters">Let me introduce myself</span>
-          </span>
-        </h2>
-      </div>
-      <div class="welcome__container">
-        <div class="welcome__chevron"></div>
-        <div class="welcome__chevron"></div>
-        <div class="welcome__chevron"></div>
-      </div>
-    </section>
-    <div class="burger">
-      <svg
-          
-          version="1.1"
-          class="bread"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-          xml:space="preserve"
-          id="bread"
-        >
-          <path class="bread-dot"
-            d="M264.79 110.933a8.53 8.53 0 0 0 8.532-8.533 8.53 8.53 0 0 0-8.533-8.533h-.086c-4.71 0-8.49 3.823-8.49 8.533s3.865 8.533 8.575 8.533z"
-          />
-          <path class="bread-dot"
-            d="M196.523 93.867c4.72 0 8.533-3.823 8.533-8.533s-3.814-8.533-8.533-8.533h-.085c-4.71 0-8.49 3.824-8.49 8.534s3.864 8.533 8.575 8.533z"
-          />
-          <path class="bread-dot"
-            d="M315.99 76.8c4.718 0 8.532-3.823 8.532-8.533s-3.814-8.533-8.533-8.533h-.086c-4.71 0-8.49 3.823-8.49 8.533s3.865 8.533 8.575 8.533z"
-          />
-          <path class="bread-dot"
-            d="M384.256 93.867c4.72 0 8.533-3.823 8.533-8.533s-3.815-8.533-8.534-8.533h-.085c-4.71 0-8.49 3.824-8.49 8.534s3.866 8.533 8.576 8.533z"
-          />
-          <path class="bread-dot"
-            d="M350.123 110.933a8.53 8.53 0 0 0 8.533-8.533 8.53 8.53 0 0 0-8.533-8.533h-.085c-4.71 0-8.49 3.823-8.49 8.533s3.864 8.533 8.575 8.533z"
-          />
-          <path class="bread-dot"
-            d="M247.723 59.733a8.53 8.53 0 0 0 8.533-8.533 8.53 8.53 0 0 0-8.533-8.533h-.085c-4.71 0-8.49 3.823-8.49 8.533s3.864 8.533 8.575 8.533z"
-          />
-          <path class="bread-dot"
-            d="M145.323 76.8c4.72 0 8.533-3.823 8.533-8.533s-3.814-8.533-8.533-8.533h-.085c-4.71 0-8.49 3.823-8.49 8.533s3.864 8.533 8.575 8.533z"
-          />
-          <path class="bread-top"
-            d="M42.667 230.4h426.667c14.83 0 25.6-10.77 25.566-24.832.273-2.944 5.973-72.815-45.5-129.178C408.277 31.36 343.21 8.533 256 8.533S103.723 31.36 62.61 76.39C11.135 132.753 16.835 202.624 17.066 204.8c0 14.83 10.77 25.6 25.6 25.6zM75.204 87.893C112.956 46.558 173.78 25.6 256 25.6c82.09 0 142.865 20.898 180.634 62.114 46.43 50.68 41.327 115.678 41.233 117.086 0 5.504-3.03 8.533-8.533 8.533H42.667c-5.427 0-8.533-3.106-8.568-9.3-.06-.658-5.343-65.272 41.104-116.14z"
-            
-          /><text><a href="#about">About</a></text>
-          
-          <path class="bread-cheese"
-            d="M213.333 247.467c-2.26 0-4.43.896-6.033 2.5l-45.167 45.167-45.167-45.167a8.513 8.513 0 0 0-6.033-2.5H42.667A8.536 8.536 0 0 0 34.134 256a8.536 8.536 0 0 0 8.533 8.533H107.4l48.7 48.7a8.51 8.51 0 0 0 6.034 2.5 8.51 8.51 0 0 0 6.033-2.5l48.7-48.7h252.467a8.536 8.536 0 0 0 8.533-8.533 8.536 8.536 0 0 0-8.533-8.533h-256z"
-          /><text ><a href="#experience">Experience</a></text>
-          <path class="bread-cutlet"
-            d="M486.4 281.6H221.867c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533H486.4c4.702 0 8.533 3.83 8.533 8.533v17.066c0 4.702-3.83 8.533-8.533 8.533H25.6c-4.702 0-8.533-3.832-8.533-8.534V307.2c0-4.702 3.83-8.533 8.533-8.533h76.8c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533H25.6c-14.114 0-25.6 11.486-25.6 25.6v17.067c0 14.114 11.486 25.6 25.6 25.6h460.8c14.123 0 25.6-11.486 25.6-25.6V307.2c0-14.114-11.477-25.6-25.6-25.6z"
-          /><text ><a href="#education">Education</a></text>
-          <path class="bread-becon"
-            d="M40.158 398.575c4.087-4.053 17.1-14.575 28.11-14.575 4.795 0 6.85 1.852 11.033 6.033 4.66 4.66 11.035 11.034 23.1 11.034 12.067 0 18.45-6.374 23.1-11.034 4.182-4.18 6.24-6.033 11.035-6.033 4.796 0 6.852 1.852 11.034 6.033 4.658 4.66 11.033 11.034 23.1 11.034 12.065 0 18.448-6.374 23.1-11.034 4.18-4.18 6.237-6.033 11.033-6.033s6.852 1.852 11.034 6.033c4.66 4.66 11.034 11.034 23.1 11.034s18.45-6.374 23.1-11.034c4.18-4.18 6.238-6.033 11.034-6.033 4.797 0 6.853 1.852 11.035 6.033 4.66 4.66 11.034 11.034 23.1 11.034s18.45-6.374 23.1-11.034c4.18-4.18 6.238-6.033 11.034-6.033s6.85 1.852 11.033 6.033c4.66 4.66 11.034 11.034 23.1 11.034s18.45-6.374 23.1-11.034c4.18-4.18 6.238-6.033 11.034-6.033s6.852 1.852 11.034 6.033c4.66 4.66 11.035 11.034 23.1 11.034 20.03 0 38.17-17.562 40.167-19.567 3.328-3.328 3.328-8.713.01-12.05s-8.73-3.353-12.06-.025C467.764 373.478 454.742 384 443.734 384c-4.796 0-6.852-1.852-11.034-6.033-4.652-4.66-11.035-11.034-23.1-11.034-12.067 0-18.442 6.374-23.1 11.034-4.182 4.18-6.24 6.033-11.035 6.033s-6.852-1.852-11.034-6.033c-4.65-4.66-11.033-11.034-23.1-11.034-12.065 0-18.44 6.374-23.1 11.034-4.18 4.18-6.237 6.033-11.033 6.033s-6.852-1.852-11.034-6.033c-4.65-4.66-11.034-11.034-23.1-11.034s-18.44 6.374-23.1 11.034c-4.18 4.18-6.238 6.033-11.034 6.033s-6.853-1.852-11.035-6.033c-4.65-4.66-11.034-11.034-23.1-11.034s-18.44 6.374-23.1 11.034c-4.18 4.18-6.238 6.033-11.034 6.033-4.795 0-6.85-1.852-11.033-6.033-4.65-4.66-11.034-11.034-23.1-11.034s-18.44 6.374-23.1 11.034c-4.18 4.18-6.238 6.033-11.034 6.033-4.796 0-6.852-1.852-11.034-6.033-4.652-4.66-11.035-11.034-23.1-11.034-20.02 0-38.162 17.562-40.167 19.567-3.328 3.328-3.328 8.713-.01 12.05 3.328 3.327 8.73 3.344 12.075.025z"
-          /><text ><a href="#projects">Projects</a></text>
-          <path class="bread-bottom"
-            d="M469.333 418.133H42.667c-14.114 0-25.6 11.486-25.6 25.6V460.8c0 23.526 19.14 42.667 42.667 42.667h392.533c23.526 0 42.667-19.14 42.667-42.667v-17.067c0-14.114-11.478-25.6-25.6-25.6zm8.534 42.667c0 14.114-11.477 25.6-25.6 25.6H59.733c-14.114 0-25.6-11.486-25.6-25.6v-17.067c0-4.702 3.83-8.533 8.533-8.533h426.667c4.702 0 8.533 3.83 8.533 8.533V460.8z"
-          /><text ><a href="#contacts">Contacts</a></text
-        </svg>
+<body class="loaded overflow">
+  <!-- <body class="loaded rotate"> -->
+  <section class="welcome">
+    <!-- <section class="welcome rotate"> -->
+    <div class="welcome__inner container">
+      <div id="particles-js"></div>
+      <h1 class="welcome__title title1">
+        <span class="text-wrapper">
+          <span class="line line1"></span>
+          <span class="letters">Hello</span>
+        </span>
+      </h1>
+      <h2 class="welcome__title title2">
+        <span class="text-wrapper">
+          <span class="line line1"></span>
+          <span class="letters">Nice to see you</span>
+        </span>
+      </h2>
+      <h2 class="welcome__title title3">
+        <span class="text-wrapper">
+          <span class="line line1"></span>
+          <span class="letters">Let me introduce my team</span>
+        </span>
+      </h2>
     </div>
-    <div class="content">
-      
-      <header class="header">
-        <div class="header__top">
-          <h1 class="header__name"><a href="/">Zadorozhnii Volodymyr</a></h1>
-          <h2 class="header__position">Front-End developer</h2>
-          <p class="header__about">
-            I build accessible, inclusive products and digital experiences for
-            the web.
-          </p>
-          <nav class="header__nav">
-            <ul>
-              <li>
-                <a class="header__nav-item active" href="#about">
-                  <span class="header__nav-indicator"></span>
-                  <span class="header__nav-text">About</span>
-                </a>
-              </li>
-              <li>
-                <a class="header__nav-item" href="#experience">
-                  <span class="header__nav-indicator"></span>
-                  <span class="header__nav-text">Experience</span>
-                </a>
-              </li>
-              <li>
-                <a class="header__nav-item" href="#education">
-                  <span class="header__nav-indicator"></span>
-                  <span class="header__nav-text">Education</span>
-                </a>
-              </li>
-              <li>
-                <a class="header__nav-item" href="#projects">
-                  <span class="header__nav-indicator"></span>
-                  <span class="header__nav-text">Projects</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="header__bottom">
-          <div class="sound-switcher">
-            <svg
-              id="wave"
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 50 38.05"
-            >
-              <title>Audio Wave</title>
-              <path
-                id="Line_1"
-                data-name="Line 1"
-                d="M0.91,15L0.78,15A1,1,0,0,0,0,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H0.91Z"
-              />
-              <path
-                id="Line_2"
-                data-name="Line 2"
-                d="M6.91,9L6.78,9A1,1,0,0,0,6,10V28a1,1,0,1,0,2,0s0,0,0,0V10A1,1,0,0,0,7,9H6.91Z"
-              />
-              <path
-                id="Line_3"
-                data-name="Line 3"
-                d="M12.91,0L12.78,0A1,1,0,0,0,12,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H12.91Z"
-              />
-              <path
-                id="Line_4"
-                data-name="Line 4"
-                d="M18.91,10l-0.12,0A1,1,0,0,0,18,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H18.91Z"
-              />
-              <path
-                id="Line_5"
-                data-name="Line 5"
-                d="M24.91,15l-0.12,0A1,1,0,0,0,24,16v6a1,1,0,0,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H24.91Z"
-              />
-              <path
-                id="Line_6"
-                data-name="Line 6"
-                d="M30.91,10l-0.12,0A1,1,0,0,0,30,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H30.91Z"
-              />
-              <path
-                id="Line_7"
-                data-name="Line 7"
-                d="M36.91,0L36.78,0A1,1,0,0,0,36,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H36.91Z"
-              />
-              <path
-                id="Line_8"
-                data-name="Line 8"
-                d="M42.91,9L42.78,9A1,1,0,0,0,42,10V28a1,1,0,1,0,2,0s0,0,0,0V10a1,1,0,0,0-1-1H42.91Z"
-              />
-              <path
-                id="Line_9"
-                data-name="Line 9"
-                d="M48.91,15l-0.12,0A1,1,0,0,0,48,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H48.91Z"
-              />
-            </svg>
-          </div>
+    <div class="welcome__container">
+      <div class="welcome__chevron"></div>
+      <div class="welcome__chevron"></div>
+      <div class="welcome__chevron"></div>
+    </div>
+  </section>
+  <div class="content">
 
-          <ul class="header__socials" id="contacts">
+    <header class="header">
+      <div class="header__top">
+        <h1 class="header__name"><a href="/">Brightech Team</a></h1>
+        <h2 class="header__position">Web Dev Studio</h2>
+        <nav class="header__nav">
+          <ul>
             <li>
-              <a
-                href="https://www.linkedin.com/in/volodymyr-zadorozhnii-963809144/"
-                class="footer__socials-item"
-                target="_blank"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 50 50"
-                  width="50px"
-                  height="50px"
-                >
-                  <path
-                    d="M 8 3.0117188 C 6.3126093 3.0117188 4.8354789 3.4916328 3.7539062 4.3652344 C 2.6723337 5.238836 2.0117188 6.533218 2.0117188 7.9472656 C 2.0117188 10.690836 4.4687078 12.814467 7.7167969 12.941406 A 0.98809878 0.98809878 0 0 0 8 12.988281 C 9.753566 12.988281 11.246191 12.474267 12.3125 11.564453 C 13.378809 10.654639 13.988281 9.3429353 13.988281 7.9472656 A 0.98809878 0.98809878 0 0 0 13.986328 7.8925781 C 13.832307 5.1316834 11.374781 3.0117187 8 3.0117188 z M 8 4.9882812 C 10.60907 4.9882812 11.895883 6.2693448 12.005859 7.9726562 C 11.998759 8.8049335 11.676559 9.5118991 11.03125 10.0625 C 10.378809 10.619186 9.371434 11.011719 8 11.011719 C 5.3980542 11.011719 3.9882813 9.5991704 3.9882812 7.9472656 C 3.9882812 7.1213132 4.3276663 6.4422421 4.9960938 5.9023438 C 5.6645211 5.3624454 6.6873907 4.9882813 8 4.9882812 z M 3 15 A 1.0001 1.0001 0 0 0 2 16 L 2 45 A 1.0001 1.0001 0 0 0 3 46 L 13 46 A 1.0001 1.0001 0 0 0 14 45 L 14 35.664062 L 14 16 A 1.0001 1.0001 0 0 0 13 15 L 3 15 z M 18 15 A 1.0001 1.0001 0 0 0 17 16 L 17 45 A 1.0001 1.0001 0 0 0 18 46 L 28 46 A 1.0001 1.0001 0 0 0 29 45 L 29 29 L 29 28.75 L 29 28.5 C 29 26.555577 30.555577 25 32.5 25 C 34.444423 25 36 26.555577 36 28.5 L 36 45 A 1.0001 1.0001 0 0 0 37 46 L 47 46 A 1.0001 1.0001 0 0 0 48 45 L 48 28 C 48 23.873476 46.787888 20.604454 44.744141 18.375 C 42.700394 16.145546 39.849212 15 36.787109 15 C 32.882872 15 30.521631 16.426076 29 17.601562 L 29 16 A 1.0001 1.0001 0 0 0 28 15 L 18 15 z M 4 17 L 12 17 L 12 35.664062 L 12 44 L 4 44 L 4 17 z M 19 17 L 27 17 L 27 19.638672 A 1.0001 1.0001 0 0 0 28.744141 20.306641 C 28.744141 20.306641 31.709841 17 36.787109 17 C 39.360007 17 41.615528 17.922268 43.269531 19.726562 C 44.923534 21.530858 46 24.261524 46 28 L 46 44 L 38 44 L 38 28.5 A 1.0001 1.0001 0 0 0 37.916016 28.089844 C 37.694061 25.26411 35.38033 23 32.5 23 C 29.474423 23 27 25.474423 27 28.5 L 27 28.75 L 27 29 L 27 44 L 19 44 L 19 17 z"
-                  />
-                </svg>
+              <a class="header__nav-item active" id="barbazuk">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Екатерина Барбазюк</span>
               </a>
             </li>
+
             <li>
-              <a
-                href="mailto:zadorozhniiv@gmail.com"
-                class="footer__socials-item"
-                target="_blank"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 50 50"
-                  width="50px"
-                  height="50px"
-                >
-                  <path
-                    d="M 5.5 7 C 3.03125 7 1.011719 9.015625 1 11.484375 C 1 11.484375 1 11.488281 1 11.492188 C 1 11.496094 1 11.496094 1 11.5 L 1 38.5 C 1 40.972656 3.027344 43 5.5 43 L 44.5 43 C 46.972656 43 49 40.972656 49 38.5 L 49 11.5 C 49 11.496094 49 11.496094 49 11.492188 C 49 11.488281 49 11.484375 49 11.484375 C 48.988281 9.015625 46.96875 7 44.5 7 Z M 8.101563 9 L 41.902344 9 L 25 20.78125 Z M 4.773438 9.117188 L 25 23.21875 L 45.230469 9.117188 C 46.253906 9.425781 46.992188 10.355469 47 11.488281 C 46.996094 11.699219 46.78125 12.121094 46.46875 12.460938 C 46.152344 12.804688 45.84375 13.019531 45.84375 13.019531 L 45.839844 13.027344 L 25 27.777344 L 4.160156 13.027344 L 4.15625 13.019531 C 4.15625 13.019531 3.847656 12.804688 3.53125 12.460938 C 3.21875 12.121094 3.003906 11.699219 3 11.488281 C 3.007813 10.355469 3.746094 9.425781 4.773438 9.117188 Z M 3 14.652344 C 3 14.652344 3.007813 14.660156 3.007813 14.660156 L 3.015625 14.664063 L 3.015625 14.667969 L 6 16.777344 L 6 41 L 5.5 41 C 4.109375 41 3 39.890625 3 38.5 Z M 47 14.652344 L 47 38.5 C 47 39.890625 45.890625 41 44.5 41 L 44 41 L 44 16.777344 L 46.984375 14.667969 L 46.984375 14.664063 C 46.984375 14.664063 47 14.652344 47 14.652344 Z M 8 18.191406 L 25 30.222656 L 42 18.191406 L 42 41 L 8 41 Z"
-                  />
-                </svg>
+              <a class="header__nav-item " id="shura">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Евгений Жураховський</span>
               </a>
             </li>
+
             <li>
-              <a
-                href="https://t.me/ZadorozhniiVolodymyr"
-                class="footer__socials-item"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 50 50"
-                  width="50px"
-                  height="50px"
-                >
-                  <path
-                    d="M 44.376953 5.9863281 C 43.889905 6.0076957 43.415817 6.1432497 42.988281 6.3144531 C 42.565113 6.4845113 40.128883 7.5243408 36.53125 9.0625 C 32.933617 10.600659 28.256963 12.603668 23.621094 14.589844 C 14.349356 18.562196 5.2382813 22.470703 5.2382812 22.470703 L 5.3046875 22.445312 C 5.3046875 22.445312 4.7547875 22.629122 4.1972656 23.017578 C 3.9185047 23.211806 3.6186028 23.462555 3.3730469 23.828125 C 3.127491 24.193695 2.9479735 24.711788 3.015625 25.259766 C 3.2532479 27.184511 5.2480469 27.730469 5.2480469 27.730469 L 5.2558594 27.734375 L 14.158203 30.78125 C 14.385177 31.538434 16.858319 39.792923 17.402344 41.541016 C 17.702797 42.507484 17.984013 43.064995 18.277344 43.445312 C 18.424133 43.635633 18.577962 43.782915 18.748047 43.890625 C 18.815627 43.933415 18.8867 43.965525 18.957031 43.994141 C 18.958531 43.994806 18.959437 43.99348 18.960938 43.994141 C 18.969579 43.997952 18.977708 43.998295 18.986328 44.001953 L 18.962891 43.996094 C 18.979231 44.002694 18.995359 44.013801 19.011719 44.019531 C 19.043456 44.030655 19.062905 44.030268 19.103516 44.039062 C 20.123059 44.395042 20.966797 43.734375 20.966797 43.734375 L 21.001953 43.707031 L 26.470703 38.634766 L 35.345703 45.554688 L 35.457031 45.605469 C 37.010484 46.295216 38.415349 45.910403 39.193359 45.277344 C 39.97137 44.644284 40.277344 43.828125 40.277344 43.828125 L 40.310547 43.742188 L 46.832031 9.7519531 C 46.998903 8.9915162 47.022612 8.334202 46.865234 7.7402344 C 46.707857 7.1462668 46.325492 6.6299361 45.845703 6.34375 C 45.365914 6.0575639 44.864001 5.9649605 44.376953 5.9863281 z M 44.429688 8.0195312 C 44.627491 8.0103707 44.774102 8.032983 44.820312 8.0605469 C 44.866523 8.0881109 44.887272 8.0844829 44.931641 8.2519531 C 44.976011 8.419423 45.000036 8.7721605 44.878906 9.3242188 L 44.875 9.3359375 L 38.390625 43.128906 C 38.375275 43.162926 38.240151 43.475531 37.931641 43.726562 C 37.616914 43.982653 37.266874 44.182554 36.337891 43.792969 L 26.632812 36.224609 L 26.359375 36.009766 L 26.353516 36.015625 L 23.451172 33.837891 L 39.761719 14.648438 A 1.0001 1.0001 0 0 0 38.974609 13 A 1.0001 1.0001 0 0 0 38.445312 13.167969 L 14.84375 28.902344 L 5.9277344 25.849609 C 5.9277344 25.849609 5.0423771 25.356927 5 25.013672 C 4.99765 24.994652 4.9871961 25.011869 5.0332031 24.943359 C 5.0792101 24.874869 5.1948546 24.759225 5.3398438 24.658203 C 5.6298218 24.456159 5.9609375 24.333984 5.9609375 24.333984 L 5.9941406 24.322266 L 6.0273438 24.308594 C 6.0273438 24.308594 15.138894 20.399882 24.410156 16.427734 C 29.045787 14.44166 33.721617 12.440122 37.318359 10.902344 C 40.914175 9.3649615 43.512419 8.2583658 43.732422 8.1699219 C 43.982886 8.0696253 44.231884 8.0286918 44.429688 8.0195312 z M 33.613281 18.792969 L 21.244141 33.345703 L 21.238281 33.351562 A 1.0001 1.0001 0 0 0 21.183594 33.423828 A 1.0001 1.0001 0 0 0 21.128906 33.507812 A 1.0001 1.0001 0 0 0 20.998047 33.892578 A 1.0001 1.0001 0 0 0 20.998047 33.900391 L 19.386719 41.146484 C 19.35993 41.068197 19.341173 41.039555 19.3125 40.947266 L 19.3125 40.945312 C 18.800713 39.30085 16.467362 31.5161 16.144531 30.439453 L 33.613281 18.792969 z M 22.640625 35.730469 L 24.863281 37.398438 L 21.597656 40.425781 L 22.640625 35.730469 z"
-                  />
-                </svg>
+              <a class="header__nav-item " id="shekul">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Андрей Жекул</span>
               </a>
             </li>
+
             <li>
-              <a
-                href="./src/documents/zadorozhnii-volodymyr-front-end-cv.pdf"
-                download="cv"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 50 50"
-                  width="50px"
-                  height="50px"
-                >
-                  <path
-                    d="M 7 2 L 7 48 L 43 48 L 43 14.59375 L 42.71875 14.28125 L 30.71875 2.28125 L 30.40625 2 Z M 9 4 L 29 4 L 29 16 L 41 16 L 41 46 L 9 46 Z M 31 5.4375 L 39.5625 14 L 31 14 Z M 15 22 L 15 24 L 35 24 L 35 22 Z M 15 28 L 15 30 L 31 30 L 31 28 Z M 15 34 L 15 36 L 35 36 L 35 34 Z"
-                  />
-                </svg>
+              <a class="header__nav-item " id="stepanuk">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Павел Степанюк</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="fedoruk">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Владислав Федорук</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="zadorozhnii">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Владимир Задорожний</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="migda">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Владимир Мигда</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="shuplat">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Евгений Шуплат</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="banit">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Людмила Банит</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="fedorov">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Александр Фёдоров</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="horodentsky">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Алексей Городецкий</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="header__nav-item " id="hlopkov">
+                <span class="header__nav-indicator"></span>
+                <span class="header__nav-text">Александр Хлопков</span>
               </a>
             </li>
           </ul>
-          <a class="scene-switcher__button">Switch scene</a>
-
-          <?xml version="1.0" encoding="iso-8859-1"?>
-
-          
+        </nav>
+      </div>
+      <div class="header__bottom">
+        <div class="sound-switcher">
+          <svg id="wave" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 38.05">
+            <title>Audio Wave</title>
+            <path id="Line_1" data-name="Line 1"
+              d="M0.91,15L0.78,15A1,1,0,0,0,0,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H0.91Z" />
+            <path id="Line_2" data-name="Line 2"
+              d="M6.91,9L6.78,9A1,1,0,0,0,6,10V28a1,1,0,1,0,2,0s0,0,0,0V10A1,1,0,0,0,7,9H6.91Z" />
+            <path id="Line_3" data-name="Line 3"
+              d="M12.91,0L12.78,0A1,1,0,0,0,12,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H12.91Z" />
+            <path id="Line_4" data-name="Line 4"
+              d="M18.91,10l-0.12,0A1,1,0,0,0,18,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H18.91Z" />
+            <path id="Line_5" data-name="Line 5"
+              d="M24.91,15l-0.12,0A1,1,0,0,0,24,16v6a1,1,0,0,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H24.91Z" />
+            <path id="Line_6" data-name="Line 6"
+              d="M30.91,10l-0.12,0A1,1,0,0,0,30,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H30.91Z" />
+            <path id="Line_7" data-name="Line 7"
+              d="M36.91,0L36.78,0A1,1,0,0,0,36,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H36.91Z" />
+            <path id="Line_8" data-name="Line 8"
+              d="M42.91,9L42.78,9A1,1,0,0,0,42,10V28a1,1,0,1,0,2,0s0,0,0,0V10a1,1,0,0,0-1-1H42.91Z" />
+            <path id="Line_9" data-name="Line 9"
+              d="M48.91,15l-0.12,0A1,1,0,0,0,48,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H48.91Z" />
+          </svg>
         </div>
-      </header>
 
-      <main class="main" id="content">
-        <section class="about" id="about">
-          <h2 class="_anim-items">About:</h2>
-          <p class="_anim-items">
-            Hello! I am a front-end developer with experience in HTML, CSS and
-            JavaScript. I strive to create beautiful, functional and responsive
-            web interfaces. My experience with Vue.js helps me build efficient
-            components and manage state effectively. I pride myself on finding
-            optimal solutions through collaboration with teams. In my spare
-            time, I am passionate about spending time with my family and dog
-            training. Let's create something amazing together!
-          </p>
-        </section>
+        <ul class="header__socials" id="contacts">
+          <li>
+            <a href="https://www.linkedin.com/company/brightech-studio2020" class="footer__socials-item"
+              target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                <path
+                  d="M 8 3.0117188 C 6.3126093 3.0117188 4.8354789 3.4916328 3.7539062 4.3652344 C 2.6723337 5.238836 2.0117188 6.533218 2.0117188 7.9472656 C 2.0117188 10.690836 4.4687078 12.814467 7.7167969 12.941406 A 0.98809878 0.98809878 0 0 0 8 12.988281 C 9.753566 12.988281 11.246191 12.474267 12.3125 11.564453 C 13.378809 10.654639 13.988281 9.3429353 13.988281 7.9472656 A 0.98809878 0.98809878 0 0 0 13.986328 7.8925781 C 13.832307 5.1316834 11.374781 3.0117187 8 3.0117188 z M 8 4.9882812 C 10.60907 4.9882812 11.895883 6.2693448 12.005859 7.9726562 C 11.998759 8.8049335 11.676559 9.5118991 11.03125 10.0625 C 10.378809 10.619186 9.371434 11.011719 8 11.011719 C 5.3980542 11.011719 3.9882813 9.5991704 3.9882812 7.9472656 C 3.9882812 7.1213132 4.3276663 6.4422421 4.9960938 5.9023438 C 5.6645211 5.3624454 6.6873907 4.9882813 8 4.9882812 z M 3 15 A 1.0001 1.0001 0 0 0 2 16 L 2 45 A 1.0001 1.0001 0 0 0 3 46 L 13 46 A 1.0001 1.0001 0 0 0 14 45 L 14 35.664062 L 14 16 A 1.0001 1.0001 0 0 0 13 15 L 3 15 z M 18 15 A 1.0001 1.0001 0 0 0 17 16 L 17 45 A 1.0001 1.0001 0 0 0 18 46 L 28 46 A 1.0001 1.0001 0 0 0 29 45 L 29 29 L 29 28.75 L 29 28.5 C 29 26.555577 30.555577 25 32.5 25 C 34.444423 25 36 26.555577 36 28.5 L 36 45 A 1.0001 1.0001 0 0 0 37 46 L 47 46 A 1.0001 1.0001 0 0 0 48 45 L 48 28 C 48 23.873476 46.787888 20.604454 44.744141 18.375 C 42.700394 16.145546 39.849212 15 36.787109 15 C 32.882872 15 30.521631 16.426076 29 17.601562 L 29 16 A 1.0001 1.0001 0 0 0 28 15 L 18 15 z M 4 17 L 12 17 L 12 35.664062 L 12 44 L 4 44 L 4 17 z M 19 17 L 27 17 L 27 19.638672 A 1.0001 1.0001 0 0 0 28.744141 20.306641 C 28.744141 20.306641 31.709841 17 36.787109 17 C 39.360007 17 41.615528 17.922268 43.269531 19.726562 C 44.923534 21.530858 46 24.261524 46 28 L 46 44 L 38 44 L 38 28.5 A 1.0001 1.0001 0 0 0 37.916016 28.089844 C 37.694061 25.26411 35.38033 23 32.5 23 C 29.474423 23 27 25.474423 27 28.5 L 27 28.75 L 27 29 L 27 44 L 19 44 L 19 17 z" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/brightechstudio/" class="footer__socials-item" target="_blank">
 
-        <section class="experience section" id="experience">
-          <h2 class="_anim-items">Experience:</h2>
-          <a
-            href="https://brightech.it/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">Aug 2022 - Present</div>
 
-            <div>
-              <div class="title">
-                <span> Front-End Developer ·</span>
-                <span> Brightech IT</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 1920 1920"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m1416.013 791.915-30.91 225.617h-371.252v789.66H788.234v-789.66H449.808V791.915h338.426V585.137c0-286.871 176.207-472.329 449.09-472.329 116.87 0 189.744 6.205 231.822 11.845l-3.272 213.66-173.5.338c-4.737-.451-117.771-9.25-199.332 65.655-52.568 48.169-79.191 117.433-79.191 205.65v181.96h402.162Zm-247.276-304.018c44.446-41.401 113.71-36.889 118.787-36.663l289.467-.113 6.204-417.504-43.544-10.717C1511.675 16.02 1426.053 0 1237.324 0 901.268 0 675.425 235.206 675.425 585.137v93.97H337v451.234h338.425V1920h451.234v-789.66h356.7l61.932-451.233H1126.66v-69.152c0-54.937 14.214-96 42.078-122.058Z"
+                  fill-rule="evenodd" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@brightechstudio.com" class="footer__socials-item" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                <path
+                  d="M 5.5 7 C 3.03125 7 1.011719 9.015625 1 11.484375 C 1 11.484375 1 11.488281 1 11.492188 C 1 11.496094 1 11.496094 1 11.5 L 1 38.5 C 1 40.972656 3.027344 43 5.5 43 L 44.5 43 C 46.972656 43 49 40.972656 49 38.5 L 49 11.5 C 49 11.496094 49 11.496094 49 11.492188 C 49 11.488281 49 11.484375 49 11.484375 C 48.988281 9.015625 46.96875 7 44.5 7 Z M 8.101563 9 L 41.902344 9 L 25 20.78125 Z M 4.773438 9.117188 L 25 23.21875 L 45.230469 9.117188 C 46.253906 9.425781 46.992188 10.355469 47 11.488281 C 46.996094 11.699219 46.78125 12.121094 46.46875 12.460938 C 46.152344 12.804688 45.84375 13.019531 45.84375 13.019531 L 45.839844 13.027344 L 25 27.777344 L 4.160156 13.027344 L 4.15625 13.019531 C 4.15625 13.019531 3.847656 12.804688 3.53125 12.460938 C 3.21875 12.121094 3.003906 11.699219 3 11.488281 C 3.007813 10.355469 3.746094 9.425781 4.773438 9.117188 Z M 3 14.652344 C 3 14.652344 3.007813 14.660156 3.007813 14.660156 L 3.015625 14.664063 L 3.015625 14.667969 L 6 16.777344 L 6 41 L 5.5 41 C 4.109375 41 3 39.890625 3 38.5 Z M 47 14.652344 L 47 38.5 C 47 39.890625 45.890625 41 44.5 41 L 44 41 L 44 16.777344 L 46.984375 14.667969 L 46.984375 14.664063 C 46.984375 14.664063 47 14.652344 47 14.652344 Z M 8 18.191406 L 25 30.222656 L 42 18.191406 L 42 41 L 8 41 Z" />
+              </svg>
+            </a>
+          </li>
 
-              <p class="text">
-                Developed, maintained, and shipped production code for client
-                websites primarily using HTML, CSS, Sass, JavaScript, and
-                jQuery. Performed quality assurance tests on various sites to
-                ensure cross browser compatibility and mobile responsiveness.
-              </p>
-              <div class="skills">
-                <span> HTML5 </span>
-                <span> CSS/SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> Webpack</span>
-                <span> Gulp </span>
-              </div>
-            </div>
+          <a href="https://brightechstudio.com/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="800" height="800" viewBox="0 0 512 512">
+              <path
+                d="M459.85 155.53a9.03 9.03 0 1 0-15.56 9.17 218.09 218.09 0 0 1 29.94 101.77h-69.58a372.1 372.1 0 0 0-4.33-48.8 9.02 9.02 0 1 0-17.84 2.8 354.33 354.33 0 0 1 4.1 46H265.03v-81.75c10.72-.4 21.41-1.52 31.9-3.35a9.03 9.03 0 1 0-3.11-17.79 219.8 219.8 0 0 1-28.79 3.07V57.26c3.94.16 7.88.41 11.77.78a9.02 9.02 0 1 0 1.7-17.98c-7.43-.7-15-1.06-22.5-1.06a235.86 235.86 0 0 0-182.6 86.21 9.03 9.03 0 0 0 13.93 11.48c3.47-4.21 7.1-8.27 10.84-12.18a237.4 237.4 0 0 0 32.03 24.21c-13.95 35.04-21.86 75.43-22.85 117.75H37.77a215.68 215.68 0 0 1 23.01-89.09 9.03 9.03 0 1 0-16.12-8.12A234.05 234.05 0 0 0 19.5 275.5C19.5 405.91 125.6 512 256 512s236.5-106.1 236.5-236.5c0-42.27-11.29-83.76-32.65-119.97zm-348.64-43.58a217.51 217.51 0 0 1 70.75-42c-11.8 10.73-22.71 24.12-32.46 39.98-4.3 7-8.3 14.37-11.98 22.05a219.2 219.2 0 0 1-26.31-20.03zM37.77 284.53h69.58c.99 42.33 8.9 82.72 22.86 117.76a237.22 237.22 0 0 0-31.97 24.15 217.7 217.7 0 0 1-60.47-141.9zm73.53 154.45c8.29-7.34 17.05-14 26.22-19.95a241.32 241.32 0 0 0 11.98 22.04c9.72 15.83 20.62 29.2 32.38 39.92a218.67 218.67 0 0 1-70.58-42zm135.67 54.43c-30.72-3.55-59.59-25.17-82.08-61.79a225.69 225.69 0 0 1-11.74-21.79 217.21 217.21 0 0 1 93.82-25.46V493.4zm0-226.94h-54.63a9.03 9.03 0 0 0 0 18.06h54.63v81.77A235.24 235.24 0 0 0 146 393.17c-12.52-32.35-19.64-69.57-20.59-108.64h36.83a9.03 9.03 0 0 0 0-18.06h-36.83c.95-39.07 8.07-76.28 20.6-108.62a235.24 235.24 0 0 0 100.96 26.87v81.75zm0-99.82a217.23 217.23 0 0 1-93.83-25.47c3.6-7.61 7.51-14.9 11.75-21.8 22.5-36.61 51.36-58.23 82.08-61.79v109.06zm83.15 314.34c11.78-10.73 22.7-24.13 32.43-40a9.03 9.03 0 0 0-15.4-9.44c-22.5 36.66-51.37 58.3-82.12 61.86V384.37a217.04 217.04 0 0 1 135.67 54.62 218.62 218.62 0 0 1-70.58 42zm83.64-54.55a235.01 235.01 0 0 0-148.73-60.14v-81.77H386.6c-.76 31.13-5.4 60.98-13.84 88.86a9.03 9.03 0 0 0 17.28 5.23c8.96-29.56 13.86-61.17 14.62-94.09h69.59a217.67 217.67 0 0 1-60.48 141.9z" />
+              <path
+                d="M452.24 64.9C442.48 20.05 404.42 0 371.04 0c-33.39 0-71.44 20.07-81.2 64.9a121.14 121.14 0 0 0 78.22 140.07 9.04 9.04 0 0 0 5.96-.01 121.14 121.14 0 0 0 78.22-140.07zm-81.2 121.91a103.08 103.08 0 0 1-63.56-118.08c8.15-37.4 39.33-50.67 63.56-50.67 24.22 0 55.4 13.27 63.55 50.67a103.07 103.07 0 0 1-63.56 118.08z" />
+              <path
+                d="M371.04 43.2a41.58 41.58 0 0 0-41.54 41.53 41.58 41.58 0 0 0 41.54 41.53 41.58 41.58 0 0 0 41.53-41.53 41.58 41.58 0 0 0-41.53-41.54zm0 65c-12.95 0-23.48-10.53-23.48-23.47s10.53-23.48 23.48-23.48a23.5 23.5 0 0 1 23.47 23.48 23.5 23.5 0 0 1-23.47 23.47z" />
+            </svg>
           </a>
+          </li>
+        </ul>
+        <!-- <a class="scene-switcher__button">Switch scene</a> -->
 
-          <a
-            href="https://beetroot.academy/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">May 2022 - Sept 2022</div>
+        <?xml version="1.0" encoding="iso-8859-1"?>
 
-            <div>
-              <div class="title">
-                <span>
-                  Student Front-End Developer ·</span
-                >
-                <span> Beetroot Academy</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
 
-              <p class="text">
-                Got basic knowledge of HTML5, CSS3, JavaScript, Vue.js, Webpack
-                e.t.c
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> CSS/SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> Vue.js </span>
-                <span> Vuex </span>
-                <span> Vue Router </span>
-                <span> Webpack </span>
-                <span> Gulp </span>
-              </div>
-            </div>
-          </a>
+      </div>
+    </header>
 
-          <a
-            href="https://www.neptunelines.com/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">2013 - 2022</div>
+    <main class="main" id="content">
 
-            <div>
-              <div class="title">
-                <span >
-                  Navigation / Safety / Medical Officer ·</span
-                >
-                <span > Neptune Lines</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
+    </main>
+  </div>
 
-              <p class="text">
-                Took specific responsibility for navigation, the upkeep of
-                charts, and software. Oversee navigation and radio equipment and
-                undertake bridge watches at sea, was designated as safety and
-                medical officer.
-              </p>
-              <div class="skills">
-                <span> WoldWide navigation</span>
-                <span> Teamwork </span>
-                <span> Communication </span>
-                <span> Problem-solving </span>
-                <span> Time management </span>
-                <span> Critical thinking </span>
-                <span> Organizational </span>
-                <span> Stress management </span>
-                <span> Adaptability </span>
-                <span> Conflict management </span>
-                <span> Leadership </span>
-                <span> Creativity </span>
-              </div>
-            </div>
-          </a>
-        </section>
+  <div id="cursor" class="pulse"></div>
+  <div id="cursor-border">
+    <div id="cursor__info" class="pulse-text">Click to switch on sound</div>
+  </div>
 
-        <section class="section" id="education">
-          <h2 class="_anim-items">Education:</h2>
-          <a
-            href="https://beetroot.academy/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">May 2022 - Sept 2022</div>
+  <div class="canvas"></div>
 
-            <div>
-              <div class="title">
-                <span >
-                  Student Front-End Developer ·</span
-                >
-                <span > Beetroot Academy</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-
-              <p class="text">
-                Got basic knowledge of HTML5, CSS3, JavaScript, Vue.js, Webpack
-                e.t.c
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> CSS/SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> Vue.js </span>
-                <span> Vuex </span>
-                <span> Vuetify </span>
-                <span> Vue Router </span>
-                <span> Webpack </span>
-                <span> Gulp </span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="http://www.onma.edu.ua/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">2013 - 2015</div>
-
-            <div>
-              <div class="title">
-                <span >
-                  Specialist of Navigation ·</span
-                >
-                <span >
-                  Odessa National Maritime Academy</span
-                >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-
-              <p class="text">
-                Got Specialist`s rang as Navigator of Merchant Ships gross
-                tonnage more than 500 rt.
-              </p>
-              <div class="skills">
-                <span> Ship Navigation </span>
-                <span> Human Resources </span>
-                <span> Fire Fighting </span>
-                <span> First Aid Assistance </span>
-                <span> Designated Security Duties </span>
-                <span> Safety at Sea </span>
-                <span> Pollution Control </span>
-                <span> Ship & Human Security At Sea </span>
-                <span> Ship`s Stability </span>
-                <span> Cargo transportation </span>
-              </div>
-            </div>
-          </a>
-          <a
-            href="http://www.onma.edu.ua/"
-            class="item _anim-items"
-            target="_blank"
-          >
-            <div class="date">2009 - 2013</div>
-
-            <div>
-              <div class="title">
-                <span > Bachelor of Navigation ·</span>
-                <span >
-                  Odessa National Maritime Academy</span
-                >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-
-              <p class="text">
-                Got bachelor`s rang as Navigator of Merchant Ships gross tonnage
-                more than 500 rt.
-              </p>
-              <div class="skills">
-                <span> Ship Navigation </span>
-                <span> Human Resources </span>
-                <span> Fire Fighting </span>
-                <span> First Aid Assistance </span>
-                <span> Designated Security Duties </span>
-                <span> Safety at Sea </span>
-                <span> Pollution Control </span>
-              </div>
-            </div>
-          </a>
-        </section>
-
-        <section class="section" id="projects">
-          <h2 class="_anim-items">Projects:</h2>
-
-          <a
-            href="https://reefervannetwork.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/rvn.webp" alt="reefer-van-network" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Reefer Van Network </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                FReefer Van Network is a network of small reefer vehicles,
-                including sprinter vans, box trucks and straight trucks.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> Vue.js </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> Wordpress </span>
-                <span> Guttenberg </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> reCAPTCHA v3 </span>
-                <span> Google Maps API</span>
-                <span> Bitrix </span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://weather-app-9qru.vercel.app/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/weather.webp" alt="logic" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Weather App </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                An application that provides access to the real-time weather
-                forecast for your region, which is calculated from your IP, as
-                well as for any place in the world using the Weather API. The
-                application allows you to add cities to your favorites and view
-                them in the future, as they are stored in localStorage for each
-                user individually.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> Vue3 </span>
-                <span> VueX </span>
-                <span> VueRouter </span>
-                <span> EventBus </span>
-                <span> Axios </span>
-                <span> HighchartsVue </span>
-                <span> ipapi </span>
-                <span> API </span>
-                <span> Google Maps API</span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://logic3plinc.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/logic.webp" alt="logic" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Logic Inc. </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                Logic3Plinc Inc. specialize in providing outsourced logistics
-                services to businesses. They offer a range of services that can
-                include warehousing, transportation, inventory management, order
-                fulfillment, and supply chain optimization. Logic3Plinc Inc.
-                providers play a crucial role in helping businesses streamline
-                their logistics operations, reduce costs, improve efficiency,
-                and enhance customer service.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> ACF </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> reCAPTCHA v3 </span>
-                <span> Google Maps API</span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://freightallianceinc.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img
-                src="./src/img/freight-alliance.webp"
-                alt="freight-alliance"
-              />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Freight Alliance Inc. </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                Freight Alliance is an up-to-date environment for independent
-                drivers who want to be part of a large and progressive network
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> Wordpress </span>
-                <span> Guttenberg </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> reCAPTCHA v3 </span>
-                <span> Google Maps API</span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://hedgehog-agency.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/hedgehog.webp" alt="hedgehog" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> HedgeHog Recruiting agency </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                HedgeHog is an international recruiting agency engaged in the
-                search and development of talented and promising experts.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> ACF </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> WPML Multilingual </span>
-                <span> reCAPTCHA v3 </span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://pioneerlogisticsinc.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/pioneer.webp" alt="pioneer" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Pioneer Logistics Inc </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                Pioneer Logistics Inc is a group of experienced logistics which
-                provide efficient, customized logistics solutions to all our
-                esteemed clients.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> ACF </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> Splide </span>
-                <span> reCAPTCHA v3 </span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://ambufreight.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/ambufreight.webp" alt="ambufreight" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Ambufreight </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                Ambufreight - Service for urgent loads and deliveries in USA,
-                Canada and Mexico.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> LazyLoad </span>
-                <span> jQuery </span>
-                <span> jQuery Parallax JS </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> ACF </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> reCAPTCHA v3 </span>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="https://ontracktransportationinc.com/"
-            target="_blank"
-            class="item _anim-items"
-          >
-            <div class="image">
-              <img src="./src/img/ontrack.webp" alt="ontrack" />
-            </div>
-
-            <div>
-              <div class="title">
-                <span> Ontrack Transportation </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text">
-                Ambufreight - Service for urgent loads and deliveries in USA,
-                Canada and Mexico.
-              </p>
-              <div class="skills">
-                <span> HTML </span>
-                <span> SCSS </span>
-                <span> JavaScript </span>
-                <span> jQuery </span>
-                <span> PHP </span>
-                <span> Wordpress </span>
-                <span> ACF </span>
-                <span> Contact form 7 </span>
-                <span> SMTP </span>
-                <span> reCAPTCHA v3 </span>
-              </div>
-            </div>
-          </a>
-        </section>
-      </main>
-    </div>
-
-    <div id="cursor" class="pulse"></div>
-    <div id="cursor-border">
-      <div id="cursor__info" class="pulse-text">Click to switch on sound</div>
-    </div>
-
-    <div class="canvas"></div>
-
-    <p></p>
-
-    <script type="x-shader/x-vertex" id="vertexshader">
+  <script type="x-shader/x-vertex" id="vertexshader">
 
       varying vec2 vUv;
 
@@ -979,7 +243,7 @@ https://cdn.jsdelivr.net/npm/gsap-drawsvg@1.0.0/drawsvgmin.min.js
 
         }
     </script>
-    <script type="x-shader/x-fragment" id="fragmentshader">
+  <script type="x-shader/x-fragment" id="fragmentshader">
 
       uniform sampler2D baseTexture;
         uniform sampler2D bloomTexture;
@@ -992,9 +256,10 @@ https://cdn.jsdelivr.net/npm/gsap-drawsvg@1.0.0/drawsvgmin.min.js
 
         }
     </script>
-  </body>
+</body>
 
-  <footer class="footer">
-    <script src="./dist/main.js"></script>
-  </footer>
+<footer class="footer">
+  <script src="./dist/main.js"></script>
+</footer>
+
 </html>

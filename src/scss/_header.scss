@@ -14,8 +14,7 @@
   -moz-transition: padding 0.2s ease-in-out;
   -ms-transition: padding 0.2s ease-in-out;
   -o-transition: padding 0.2s ease-in-out;
-  @include media(tablet)
-{
+  @include media(tablet) {
     width: 100%;
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -37,7 +36,7 @@
       right: 0;
       padding: 0.3rem 16px;
       margin: 0 auto;
-      background-color: rgba( 0,0,0, 0.8)
+      background-color: rgba(0, 0, 0, 0.8);
     }
 
     .header__top {
@@ -46,12 +45,12 @@
       }
     }
   }
-  .header__top {
+
+  &__top {
     @include media(mobile) {
       text-align: center;
     }
   }
-  
 
   &__name {
     font-size: 3rem;
@@ -95,12 +94,11 @@
       margin-top: 0.5rem;
     }
   }
+
   &__nav {
     display: block;
 
-    @include media(mobile) {
-      display: none;
-    }
+    
 
     ul {
       width: max-content;
@@ -166,6 +164,7 @@
       }
     }
   }
+
   &__socials {
     display: flex;
     align-items: center;

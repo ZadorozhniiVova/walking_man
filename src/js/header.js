@@ -14,19 +14,11 @@ function removeShowClass() {
   });
 }
 
+menuItems.forEach((menuItem) => {
+  menuItem.addEventListener('click', function(e) {
+    removeShowClass()
+    e.target.parentElement.classList.add('active');
+  })
+})
 
-window.addEventListener('scroll', () => {
-  const scrollPosition = window.pageYOffset;
-
-
-  sections.forEach((section, index) => {
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
-
-    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom+50) {
-      removeShowClass(); 
-      addShowClass(menuItems[index]); 
-    }
-  });
-});
 

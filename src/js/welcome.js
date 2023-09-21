@@ -1,10 +1,9 @@
-// Step 1: Variable Declarations
+
 let showTitle1 = false;
 let showTitle2 = false;
 let showTitle3 = false;
 let isAnimating = false;
 
-// Step 2: Wrap every letter in a span
 const wrapLetters = (element) => {
   const textWrapper = element.querySelector(".letters");
   textWrapper.innerHTML = textWrapper.textContent.replace(
@@ -13,13 +12,12 @@ const wrapLetters = (element) => {
   );
 };
 
-// Step 3: Animation Setup
+
 const animateTitle = (title, index) => {
   const line = title.querySelector(".line");
   const letters = title.querySelectorAll(".letter");
 
-  // Hide the title initially
-  title.style.opacity = 0;
+  title.style.opacity = 1;
 
   return anime.timeline({ loop: false })
     .add({
@@ -49,38 +47,38 @@ const animateTitle = (title, index) => {
     })
     .add({
       targets: title,
-      opacity: 0,
+      opacity: 0, 
       duration: 1000,
       easing: "easeOutExpo",
-      delay: 1000,
-    })
-    .add({
-      targets: line,
-      opacity: 0,
-      duration: 200,
-      easing: "easeOutExpo",
-      delay: 200,
-    })
-    .add({
-      targets: letters,
-      opacity: [1, 0],
-      duration: 300,
-      easing: "easeOutExpo",
-      delay: 300,
       complete: () => {
+        isAnimating = false; 
         if (index === 0) showTitle1 = true;
         if (index === 1) showTitle2 = true;
         if (index === 2) showTitle3 = true;
-        isAnimating = false; // Animation completed, allow the next animation
         
+
+        if (index === 0) {
+          const title2 = document.querySelector(".title2");
+          animateTitle(title2, 1);
+        } else if (index === 1) {
+          const title3 = document.querySelector(".title3");
+          animateTitle(title3, 2);
+        } else if (showTitle1 && showTitle2 && showTitle3) {
+          const welcome = document.querySelector(".welcome");
+          welcome.classList.add("rotate");
+          document.body.classList.add("rotate");
+          document.body.classList.remove('overflow');
+        }
       },
     });
 };
 
-// Step 4: Wheel Event Listener
+
+
+
 document.addEventListener("wheel", () => {
   if (isAnimating) {
-    return; // Prevent triggering the next animation while the previous one is still animating
+    return; 
   }
 
   if (!showTitle1) {
@@ -103,7 +101,7 @@ document.addEventListener("wheel", () => {
   }
 });
 
-// Step 5: Initialize
+
 wrapLetters(document.querySelector(".title1"));
 wrapLetters(document.querySelector(".title2"));
 wrapLetters(document.querySelector(".title3"));

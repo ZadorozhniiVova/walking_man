@@ -1,10 +1,6 @@
 import "./library/particles.min.js";
-// import "./welcome.js";
+import "./welcome.js";
 import "./header.js";
 import "./three.js";
-import "./projects";
 import "./cursor.js";
-import "./music.js";
-import "./sound-switcher.js";
-import "./animation-on-scroll.js";
-import "./burger.js";
+

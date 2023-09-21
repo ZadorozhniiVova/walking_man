@@ -1,5 +1,4 @@
 import * as THREE from "three";
-
 import { Reflector } from "three/examples/jsm/objects/Reflector";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -11,7 +10,6 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 
 let canvas,
   container,
-  // stats,
   cameraY,
   scene,
   camera,
@@ -33,21 +31,77 @@ let aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
 
 let modelArraySrc = [
   {
-    model: "model/strut-walking-slow.fbx",
+    model: "model/katia.fbx",
     audio:
-      "https://zadorozhniivova.github.io/walking_man/music/background-music.mp3",
+      "https://zadorozhniivova.github.io/brightech_team/music/katia.mp3",
+      // "./music/katia.mp3",
   },
   {
-    model: "model/gangnam-style-grandmom.fbx",
+    model: "model/fedoruk.fbx",
     audio:
-      "https://zadorozhniivova.github.io/walking_man/music/gangnam-style.mp3",
+      "https://zadorozhniivova.github.io/brightech_team/music/ac-dc-highway-to-hell.mp3",
+      // "./music/ac-dc-highway-to-hell.mp3",
   },
   {
-    model: "model/mexico.fbx",
+    model: "model/stepanuk.fbx",
     audio:
-      // "https://zadorozhniivova.github.io/walking_man/music/desperado.mp3",
-      "./music/desperado.mp3",
+      "https://zadorozhniivova.github.io/brightech_team/music/jain-makeba.mp3",
+      // "./music/jain-makeba.mp3",
   },
+  {
+    model: "model/shekul.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/sting-shape-of-my-heart.mp3",
+      // "./music/sting-shape-of-my-heart.mp3",
+  },
+  {
+    model: "model/banit.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/banit.mp3",
+      // "./music/banit.mp3",
+  },
+  {
+    model: "model/fedorov.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/fedorov.mp3",
+      // "./music/fedorov.mp3",
+  },
+  {
+    model: "model/hlopkov.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/hlopkov.mp3",
+      // "./music/hlopkov.mp3",
+  },
+  {
+    model: "model/horodentsky.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/horodentsky.mp3",
+      // "./music/horodentsky.mp3",
+  },
+  {
+    model: "model/migda.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/migda.mp3",
+      // "./music/migda.mp3",
+  },
+  {
+    model: "model/shuplat.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/shuplat.mp3",
+      // "./music/shuplat.mp3",
+  },
+  {
+    model: "model/zadorozhnii.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/zadorozhnii.mp3",
+      // "./music/zadorozhnii.mp3",
+  },
+  {
+    model: "model/shurah.fbx",
+    audio:
+      "https://zadorozhniivova.github.io/brightech_team/music/shurah.mp3",
+      // "./music/shurah.mp3",
+  }
 ];
 let modelNo = 1;
 let audio = new Audio(`${modelArraySrc[modelNo - 1].audio}`);
@@ -63,9 +117,6 @@ const params = {
 };
 
 const init = () => {
-  //Stats
-  // stats = createStats();
-  // document.body.appendChild(stats.domElement);
   //CONTAINER
   canvas = document.querySelector(".canvas");
   container = document.createElement("div");
@@ -88,10 +139,10 @@ const init = () => {
   // LIGHT
   const light = new THREE.AmbientLight(0xffffff, 1);
   light.layers.enable(0);
-  light.layers.enable(1);
+  light.layers.enable(0.2);
   scene.add(light);
 
-  const dirLight = new THREE.DirectionalLight(0xffca00, 2);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
   dirLight.position.set(0, 3, 0);
   dirLight.castShadow = true;
   dirLight.shadow.camera.top = 180;
@@ -102,7 +153,7 @@ const init = () => {
   dirLight.layers.enable(1);
   scene.add(dirLight);
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.7);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 1.7);
   hemiLight.position.set(100, 200, 100);
   hemiLight.layers.enable(0);
   hemiLight.layers.enable(1);
@@ -220,14 +271,6 @@ const initComposer = () => {
 };
 
 const main = () => {
-  const geometry = new THREE.BoxGeometry(20, 20, 10);
-  // 正常方块
-  // const normalMtl = new THREE.MeshLambertMaterial({ color: 0x00ffff });
-  // const normalBox = new THREE.Mesh(geometry, normalMtl);
-  // normalBox.position.z = -5;
-  // normalBox.layers.set(0);
-  // scene.add(normalBox);
-
   meshTubes = new THREE.Mesh(
     new THREE.CircleGeometry(1000, 1000),
     new THREE.MeshPhongMaterial({
@@ -391,38 +434,38 @@ camera.position.z = 50;
 
 window.addEventListener("wheel", (event) => {
   // if (document.body.classList.contains("rotate")) {
-    r = clamp((r += event.deltaY * 0.0015), 0, 11);
-    camera.position.y = clamp(
-      (camera.position.y += event.deltaY * 0.007),
-      180,
-      255
-    );
+  r = clamp((r += event.deltaY * 0.0015), 0, 11);
+  camera.position.y = clamp(
+    (camera.position.y += event.deltaY * 0.007),
+    180,
+    255
+  );
 
-    camera.position.x = clamp(
-      (camera.position.x += event.deltaY * 0.09),
-      50,
-      255
-    );
+  camera.position.x = clamp(
+    (camera.position.x += event.deltaY * 0.09),
+    50,
+    255
+  );
 
-    camera.position.z = clamp(
-      (camera.position.z += event.deltaY * 0.09),
-      50,
-      255
-    );
+  camera.position.z = clamp(
+    (camera.position.z += event.deltaY * 0.09),
+    50,
+    255
+  );
 
-    cameraY = clamp((cameraY -= event.deltaY * 0.04), 0, 165);
+  cameraY = clamp((cameraY -= event.deltaY * 0.04), 0, 165);
 
-    if (r < 11 && r > 0.1) {
-      lightTubeOne.rotation.x += r * 0.004;
-      lightTubeOne.rotation.z += r * 0.004;
+  if (r < 11 && r > 0.1) {
+    lightTubeOne.rotation.x += r * 0.004;
+    lightTubeOne.rotation.z += r * 0.004;
 
-      lightTubeTwo.rotation.x += r * 0.004;
-      lightTubeTwo.rotation.z += r * 0.004;
+    lightTubeTwo.rotation.x += r * 0.004;
+    lightTubeTwo.rotation.z += r * 0.004;
 
-      lightTubeThree.rotation.x += r * 0.004;
-      lightTubeThree.rotation.z += r * 0.004;
-    }
-    return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
+    lightTubeThree.rotation.x += r * 0.004;
+    lightTubeThree.rotation.z += r * 0.004;
+  }
+  return r, camera.position.z, camera.position.x, camera.position.y, cameraY;
   // }
 });
 
@@ -447,49 +490,59 @@ loader.load(`${modelArraySrc[modelNo - 1].model}`, function (object) {
   meshHuman.add(object);
 });
 
-document
-  .querySelector(".scene-switcher__button")
-  .addEventListener("click", function (event, object) {
-    audio.pause();
-    audioPlay = false;
-    cursorInfoShow()
-    audio.currentTime = 0;
-    THREE.Cache.clear();
-    event.stopPropagation();
-    meshHuman.clear(object);
+function selectPerson(idIndex, numberArray) {
+  document
+    .querySelector(idIndex)
+    .addEventListener("click", function (event, object) {
+      soundOFF();
+      audio.currentTime = 0;
+      THREE.Cache.clear();
+      event.stopPropagation();
+      meshHuman.clear(object);
 
-    const loader = new FBXLoader();
+      const loader = new FBXLoader();
 
-    loader.load(`${modelArraySrc[modelNo].model}`, function (object) {
-      mixer = new THREE.AnimationMixer(object);
+      loader.load(`${modelArraySrc[numberArray].model}`, function (object) {
+        mixer = new THREE.AnimationMixer(object);
 
-      const action = mixer.clipAction(object.animations[0]);
-      action.play();
+        const action = mixer.clipAction(object.animations[0]);
+        action.play();
 
-      object.traverse(function (child) {
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
+        object.traverse(function (child) {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+        object.aspect = 0.3;
+        meshHuman.add(object);
       });
-      object.aspect = 0.3;
-      meshHuman.add(object);
+      document
+        .querySelector(".canvas-hero")
+        .classList.remove(`scene-${numberArray}`);
+      audio = new Audio(`${modelArraySrc[numberArray].audio}`);
+
+      document
+        .querySelector(".canvas-hero")
+        .classList.add(`scene-${numberArray}`);
+
+      soundON();
+      render();
     });
-    document.querySelector(".canvas-hero").classList.remove(`scene-${modelNo}`);
-    audio = new Audio(`${modelArraySrc[modelNo].audio}`);
+}
 
-    
-    if (modelNo == modelArraySrc.length - 1) {
-      modelNo = 0;
-    } else {
-      modelNo++;
-    }
-
-    document.querySelector(".canvas-hero").classList.add(`scene-${modelNo}`);
-
-    render();
-  });
-
+selectPerson("#barbazuk", 0);
+selectPerson("#fedoruk", 1);
+selectPerson("#stepanuk", 2);
+selectPerson("#shekul", 3);
+selectPerson("#banit", 4);
+selectPerson("#fedorov", 5);
+selectPerson("#hlopkov", 6);
+selectPerson("#horodentsky", 7);
+selectPerson("#migda", 8);
+selectPerson("#shuplat", 9);
+selectPerson("#zadorozhnii", 10);
+selectPerson("#shura", 11);
 render();
 
 //MINMAX
@@ -497,39 +550,33 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-// function createStats() {
-//   var stats = new Stats();
-//   stats.setMode(0);
-
-//   stats.domElement.style.position = "absolute";
-//   stats.domElement.style.left = "0";
-//   stats.domElement.style.top = "0";
-
-//   return stats;
-// }
-
 // SOUND SWITCHER
 let soundSwitcher = document.querySelector(".sound-switcher");
 
 soundSwitcher.addEventListener("click", function (event) {
   if (soundSwitcher.classList.contains("sound-on")) {
-    soundSwitcher.classList.toggle("sound-on");
-    audio.pause();
-    event.stopPropagation();
-    audioPlay = false;
-    cursorInfoShow()
-    
-  }else if ( !soundSwitcher.classList.contains("sound-on")) {
-    soundSwitcher.classList.remove("sound-on");
-    audio.volume = 0.1;
-    audio.play();
-    audio.loop = true;
-    audioPlay = true;
-    cursorInfoShow()
+    soundOFF();
+  } else if (!soundSwitcher.classList.contains("sound-on")) {
+    soundON();
   }
 });
 
+function soundOFF() {
+  soundSwitcher.classList.toggle("sound-on");
+  audio.pause();
+  event.stopPropagation();
+  audioPlay = false;
+  cursorInfoShow();
+}
 
+function soundON() {
+  soundSwitcher.classList.add("sound-on");
+  audio.volume = 0.1;
+  audio.play();
+  audio.loop = true;
+  audioPlay = true;
+  cursorInfoShow();
+}
 //START AUDIO
 
 document.body.addEventListener("click", () => {
@@ -538,62 +585,19 @@ document.body.addEventListener("click", () => {
     audio.play();
     audio.loop = true;
     audioPlay = true;
-    cursorInfoShow()
+    cursorInfoShow();
   }
-  if (!soundSwitcher.classList.contains("sound-on")){
+  if (!soundSwitcher.classList.contains("sound-on")) {
     soundSwitcher.classList.add("sound-on");
   }
 });
 
-
 function cursorInfoShow() {
   let cursorInfo = document.querySelector("#cursor__info");
 
-  if(audioPlay === true){
+  if (audioPlay === true) {
     cursorInfo.style.opacity = 0;
-  } else if(audioPlay === false) {
+  } else if (audioPlay === false) {
     cursorInfo.style.opacity = 1;
   }
 }
-// document.addEventListener("DOMContentLoaded", function() {
-//   // Находим кнопку по ее идентификатору
-//   const scrollButton = document.querySelector('#scroll');
-
-//   // Добавляем обработчик события при клике на кнопку
-//   scrollButton.addEventListener("click", function() {
-//     // Вычисляем текущую позицию прокрутки страницы
-//     const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-
-//     // Вычисляем количество пикселей, которое нужно прокрутить до 1000px
-//     const distance = 1000 - currentPosition;
-
-//     // Задаем параметры для плавной анимации прокрутки
-//     const duration = 1000; // Длительность анимации в миллисекундах
-//     const startTime = performance.now(); // Время начала анимации
-
-//     // Функция анимации прокрутки
-//     function scrollTo(targetPosition) {
-//       // Вычисляем прошедшее время анимации
-//       const currentTime = performance.now();
-//       const elapsedTime = currentTime - startTime;
-
-//       // Вычисляем прогресс анимации от 0 до 1
-//       const progress = Math.min(elapsedTime / duration, 1);
-
-//       // Вычисляем новую позицию прокрутки
-//       const newPosition = currentPosition + distance * progress;
-
-//       // Прокручиваем страницу до новой позиции
-//       document.documentElement.scrollTop = newPosition;
-//       document.body.scrollTop = newPosition;
-
-//       // Если анимация не закончена, продолжаем анимацию
-//       if (progress < 1) {
-//         requestAnimationFrame(scrollTo.bind(null, targetPosition));
-//       }
-//     }
-
-//     // Запускаем анимацию прокрутки до 1000px
-//     scrollTo(1000);
-//   });
-// });

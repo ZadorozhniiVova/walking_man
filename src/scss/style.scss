@@ -2,7 +2,8 @@
 @import "./_breakpoints.scss";
 //Base
 @import "./_base.scss";
-
+//Animation 
+@import "./keyframes.scss";
 //Header
 @import "./_header.scss";
 
@@ -15,21 +16,24 @@
 //About
 @import "./about.scss";
 
-
-
+//Welcome
 @import "./_welcome.scss";
 
-//Animation 
-@import "./keyframes.scss";
 
-//Burger
-@import "./burger.scss";
 
+//Canvas
 @import "./_canvas.scss";
+
+//Cursor
 @import "./_cursor.scss";
+
+//Preloader
 @import "./_preloader.scss";
-@import "./_scene-switcher.scss";
+
+//Sound Switcher
 @import "./sound-switcher.scss";
+
+//Typography
 @import "./_tipography.scss";
 
 
